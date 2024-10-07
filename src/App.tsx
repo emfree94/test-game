@@ -11,23 +11,26 @@ declare global {
 const tg = window.Telegram.WebApp
 
 export const App = () => {
+  const [username, setUsername] = useState<string | null>(null);
+
   useEffect(() => {
-    tg.ready()
-    console.log('tg.initDataUnsafe?.user?', tg.initDataUnsafe)
-  }, [])
+    tg.ready();
+    
+    if (tg.initDataUnsafe?.user) {
+      setUsername(tg.initDataUnsafe.user.username);
+    } else {
+      console.log('User data is not available yet');
+    }
+  }, []);
 
   return (
     <div>
-      <p>
-        {tg.initDataUnsafe?.user?.username
-          ? tg.initDataUnsafe.user.username
-          : 'Loading...'}
-      </p>
+      <p>{username ? username : 'Loading...'}</p>
       <button onClick={() => tg.close()}>close</button>
       <main>
         <Outlet />
       </main>
       <Navigation />
     </div>
-  )
-}
+  );
+};

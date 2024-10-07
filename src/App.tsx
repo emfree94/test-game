@@ -15,18 +15,18 @@ export const App = () => {
 
   useEffect(() => {
     const firstLayerInitData = Object.fromEntries(
-      new URLSearchParams(window.Telegram.WebApp.initDataUnsafe)
+      new URLSearchParams(window.Telegram.WebApp.initData)
     );
 
     const initData: Record<string, string> = {};
 
-    // for (const key in firstLayerInitData) {
-    //   try {
-    //     initData[key] = JSON.parse(firstLayerInitData[key]);
-    //   } catch {
-    //     initData[key] = firstLayerInitData[key];
-    //   }
-    // }
+    for (const key in firstLayerInitData) {
+      try {
+        initData[key] = JSON.parse(firstLayerInitData[key]);
+      } catch {
+        initData[key] = firstLayerInitData[key];
+      }
+    }
 
     setData(initData);
 

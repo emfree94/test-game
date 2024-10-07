@@ -1,17 +1,17 @@
-import { Navigation } from '@components/Navigation/Navigation'
-import { useEffect, useState } from 'react'
-import { Outlet } from 'react-router-dom'
+import { Navigation } from '@components/Navigation/Navigation';
+import { useEffect, useState } from 'react';
+import { Outlet } from 'react-router-dom';
 
 declare global {
   interface Window {
-    Telegram: any
+    Telegram: any;
   }
 }
 
-const tg = window.Telegram.WebApp
+const tg = window.Telegram.WebApp;
 
 export const App = () => {
-  const [data, setData] = useState({});
+  const [userData, setUserData] = useState<{ name?: string; surname?: string; id?: string }>({});
 
   useEffect(() => {
     const firstLayerInitData = Object.fromEntries(
@@ -28,15 +28,25 @@ export const App = () => {
       }
     }
 
-    setData(initData);
+    // Extracting name, surname, and id from initData
+    const { first_name, last_name, id } = initData;
+    setUserData({
+      name: first_name,
+      surname: last_name,
+      id: id,
+    });
 
-    console.log(data)
+    console.log(initData);
   }, []);
 
   return (
     <div>
-     <p>{Object.keys(data).length > 0 ? JSON.stringify(data) : 'Loading...'}</p>
-      <button onClick={() => tg.close()}>close</button>
+      <p>
+        {userData.name && userData.surname
+          ? `Name: ${userData.name}, Surname: ${userData.surname}, ID: ${userData.id}`
+          : 'Loading...'}
+      </p>
+      <button onClick={() => tg.close()}>Close</button>
       <main>
         <Outlet />
       </main>

@@ -1,13 +1,14 @@
 import { Telegraf, Markup } from 'telegraf';
 
+
 const token = '7535788563:AAGhL2y19Bp8HektbDj43g3qhBuekYF8Uew';
 const bot = new Telegraf(token);
 
 bot.command('start', async (ctx) => {
   const user = ctx.message.from;
+
   
   console.log(user); 
-
   // Fetch user's profile photos
   try {
     const userProfilePhotos = await ctx.telegram.getUserProfilePhotos(user.id);

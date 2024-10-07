@@ -8,22 +8,35 @@ declare global {
   }
 }
 
+interface UserData {
+  userId: string; 
+  username: string;
+}
+
 export const App = () => {
-  const [telegramData, setTelegramData] = useState<URLSearchParams | null>(null)
+  const [userData, setUserData] = useState<UserData | null>(null);
 
   useEffect(() => {
-    if (
-      window.Telegram &&
-      window.Telegram.WebApp &&
-      window.Telegram.WebApp.initData
-    ) {
-      const initData = window.Telegram.WebApp.initData // Get the data from Telegram
-      const params = new URLSearchParams(initData) // Parse URL parameters
-      setTelegramData(params) // Save data to state
-    }
-  }, [])
+    // Check if the Telegram WebApp is available
+    if (window.Telegram && window.Telegram.WebApp) {
+      // Initialize the WebApp
+      window.Telegram.WebApp.ready();
 
-  console.log(telegramData)
+      // Retrieve user data from the URL
+      const params = new URLSearchParams(window.location.search);
+      const userId = params.get('user_id');
+      const username = params.get('username');
+
+      // Log the user data for debugging
+      console.log('User ID:', userId);
+      console.log('Username:', username);
+
+      // Create a user object and set it to state
+      if (userId && username) {
+        setUserData({ userId, username });
+      }
+    }
+  }, []);
 
   return (
     <div>
@@ -31,19 +44,6 @@ export const App = () => {
         <Outlet />
       </main>
       <Navigation />
-
-      <div>
-        {telegramData ? (
-          <div>
-            <p>User ID: {telegramData.get('id')}</p>
-            <p>First Name: {telegramData.get('first_name')}</p>
-            <p>Last Name: {telegramData.get('last_name')}</p>
-            <p>Username: {telegramData.get('username')}</p>
-          </div>
-        ) : (
-          <p>No Telegram data available.</p>
-        )}
-      </div>
     </div>
   )
 }

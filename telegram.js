@@ -9,13 +9,11 @@ bot.command('start', async (ctx) => {
 
   
   console.log(user); 
-  // Fetch user's profile photos
   try {
     const userProfilePhotos = await ctx.telegram.getUserProfilePhotos(user.id);
     if (userProfilePhotos.total_count > 0) {
       const fileId = userProfilePhotos.photos[0][0].file_id;
 
-      // Get the file details using the file_id
       const fileDetails = await ctx.telegram.getFile(fileId);
       const fileUrl = `https://api.telegram.org/file/bot${token}/${fileDetails.file_path}`;
       

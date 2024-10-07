@@ -1,9 +1,4 @@
-import { Link, NavLink } from 'react-router-dom'
-import homeIcon from '@assets/icon/home.svg'
-import activeGamesIcon from '@assets/icon/navbar_elements.svg'
-import createGameIcon from '@assets/icon/navbar_elements2.svg'
-import topPlayersIcon from '@assets/icon/navbar_elements3.svg'
-import profileIcon from '@assets/icon/Navbar_elements4.svg'
+import { NavLink } from 'react-router-dom'
 import './navigation.scss'
 import {
   ActiveGamesIcon,

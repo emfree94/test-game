@@ -97,14 +97,12 @@ export const StatisticPlayerPage = () => {
           description="Але їх завжди можна покращити"
           text="Маєш гарні результати"
           buttonText="Грати"
-          isButtonIcon
         />
       ) : (
         <ContentMessage
           text="У тебе ще не має статистики"
           variant="fail"
           buttonText="Грати"
-          isButtonIcon
         />
       )}
     </div>

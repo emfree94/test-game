@@ -2,6 +2,12 @@ import { Navigation } from '@components/Navigation/Navigation'
 import { useEffect, useState } from 'react';
 import { Outlet } from 'react-router-dom'
 
+declare global {
+  interface Window {
+      Telegram: any;
+}
+
+
 export const App = () => {
   const [telegramData, setTelegramData] = useState(null);
 
@@ -14,7 +20,7 @@ export const App = () => {
   }, []);
 
   console.log(telegramData)
-  
+
   return (
     <div>
       <main>

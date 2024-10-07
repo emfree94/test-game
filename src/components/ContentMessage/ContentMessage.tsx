@@ -11,7 +11,6 @@ interface ContentMessageProps {
   text: string
   buttonText?: string
   variant?: 'success' | 'fail'
-  isButtonIcon?: boolean
   description?: string
   children?: ReactNode
   hideButton?: boolean
@@ -21,7 +20,6 @@ export const ContentMessage: FC<ContentMessageProps> = ({
   text,
   buttonText = 'Поповнити рахунок',
   variant = 'success',
-  isButtonIcon,
   hideButton,
   description = 'Це завжди можна виправити!',
   children,

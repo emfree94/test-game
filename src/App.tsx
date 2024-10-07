@@ -11,21 +11,31 @@ declare global {
 const tg = window.Telegram.WebApp
 
 export const App = () => {
-  const [username, setUsername] = useState<string | null>(null);
+  const [data, setData] = useState({});
 
   useEffect(() => {
-    tg.ready();
-    
-    if (tg.initDataUnsafe?.user) {
-      setUsername(tg.initDataUnsafe.user.username);
-    } else {
-      console.log('User data is not available yet');
+    const firstLayerInitData = Object.fromEntries(
+      new URLSearchParams(window.Telegram.WebApp.initData)
+    );
+
+    const initData: Record<string, string> = {};
+
+    for (const key in firstLayerInitData) {
+      try {
+        initData[key] = JSON.parse(firstLayerInitData[key]);
+      } catch {
+        initData[key] = firstLayerInitData[key];
+      }
     }
+
+    setData(initData);
+
+    console.log(data)
   }, []);
 
   return (
     <div>
-      <p>{username ? username : 'Loading...'}</p>
+     <p>{Object.keys(data).length > 0 ? JSON.stringify(data) : 'Loading...'}</p>
       <button onClick={() => tg.close()}>close</button>
       <main>
         <Outlet />

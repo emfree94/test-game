@@ -27,7 +27,7 @@ export const Deposit = () => {
     formState: { errors, isValid },
   } = useForm<FormData>({
     defaultValues: {
-      depositValue: null,
+      depositValue: undefined,
     },
     resolver: zodResolver(schema),
     mode: 'all',

@@ -12,7 +12,7 @@ interface InputProps extends ComponentPropsWithoutRef<'input'> {
   errorMessage?: string
   isValid?: boolean
   inputLength?: string | number
-  coinIcon: boolean
+  coinIcon?: boolean
 }
 
 export const Input = forwardRef<HTMLInputElement, InputProps>(

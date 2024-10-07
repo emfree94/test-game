@@ -10,6 +10,8 @@ import './friend.scss'
 import { Button } from '@components/buttons/button/Button'
 import { Title } from '@components/title/Title'
 
+declare module 'react-modal'
+
 interface FriendProps {
   id: string | number
   friendRequest?: boolean
@@ -50,7 +52,7 @@ export const Friend: FC<FriendProps> = ({
 
   return (
     <div className='friend-block'>
-      <Modal Modal isOpen={modalIsOpen} onRequestClose={closeModal}  ariaHideApp={false} >
+      <Modal  isOpen={modalIsOpen} onRequestClose={closeModal}  ariaHideApp={false} >
         <Title
           className="text-semi-bold"
           text={initialModalText}

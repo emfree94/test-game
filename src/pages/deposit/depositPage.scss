@@ -1,0 +1,23 @@
+.deposit {
+  &-buttons {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+  .deposit-info {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin-top: 12px;
+
+    .deposit-info-wrapper {
+      display: flex;
+      align-items: center;
+
+      img {
+        margin-left: 4px;
+      }
+    }
+  }
+}

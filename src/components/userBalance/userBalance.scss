@@ -1,0 +1,31 @@
+.user-balance {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  margin-top: 16px;
+
+  .coins {
+    display: flex;
+    align-items: center;
+    padding: 4px 12px;
+    background-color: var(--neutralSilver);
+    border-radius: var(--brRadius);
+
+    &:last-child {
+      margin-left: 12px;
+
+      .add-coin {
+        margin-left: 4px;
+      }
+    }
+
+    .coin-balance {
+      margin-right: 2px;
+    }
+
+    .add-coin {
+      margin-bottom: 12px;
+      cursor: pointer;
+    }
+  }
+}

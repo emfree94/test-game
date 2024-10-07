@@ -1,0 +1,31 @@
+.user-profile-data {
+  margin-bottom: 20px;
+
+  .user-info-wrapper {
+    .user-info {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 9px 12px;
+      background-color: var(--neutralSilver);
+      border-radius: var(--brRadiusSecondary);
+
+      &:first-child {
+        margin-bottom: 16px;
+      }
+
+      .user-data {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+     
+
+        .edit-nickname {
+          margin-left: 6px;
+          cursor: pointer;
+        }
+      }
+    }
+  }
+}

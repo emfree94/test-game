@@ -1,0 +1,49 @@
+.statistic-player {
+  &-head {
+    margin-bottom: 24px;
+  }
+
+  .content-message {
+    top: 70%;
+    transform: translate(-50%, -70%);
+    padding: 0 20px;
+  }
+
+  .statistic-info {
+    &-list {
+      display: flex;
+      flex-direction: column;
+
+      &-wrapper {
+        padding: 10px 12px;
+        background-color: var(--neutralSilver);
+        margin-bottom: 10px;
+        border-radius: var(--brRadiusSecondary);
+
+        .list-item {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+
+          span {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+
+            .icon-group {
+              margin-right: 8px;
+            }
+            
+            .coin-icon {
+              margin-left: 2px;
+            }
+
+            .list-title {
+              color: var(--neutralAdditional);
+            }
+          }
+        }
+      }
+    }
+  }
+}

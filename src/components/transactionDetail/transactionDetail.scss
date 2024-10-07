@@ -1,0 +1,124 @@
+.transaction-detail {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 60px;
+
+  &-wrapper {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    margin-bottom: 20px;
+    width: 100%;
+
+    .button-arrow {
+      margin-right: 8px;
+    }
+  }
+
+  &-data {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    align-items: center;
+
+    .transaction-data--date {
+      color: var(--neutralDark);
+      margin-bottom: 12px;
+    }
+
+    .transaction--coin {
+      width: 100%;
+      height: 76px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      background-color: var(--primaryGolden);
+      justify-content: center;
+      margin-bottom: 20px;
+
+      &.silver {
+        background-color: var(--neutralSilver);
+      }
+
+      .price {
+        &.positive {
+          color: var(--brightGreenSecondary);
+        }
+      }
+
+      img {
+        margin-bottom: 4px;
+      }
+    }
+
+    .transaction-container {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+
+      .transaction-description {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 10px 12px;
+        width: 100%;
+        background-color: var(--neutralSilver);
+        margin-bottom: 12px;
+        border-radius: var(--brRadiusSecondary);
+
+        &-text {
+          color: var(--neutralAdditional);
+        }
+
+        .amount {
+          &.positive {
+            color: var(--brightGreenSecondary);
+          }
+        }
+
+        .status-block {
+          padding: 3px 15px;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+
+          &.New {
+            background-color: var(--surfacesBlue);
+          }
+
+          &.Completed {
+            background-color: var(--surfacesGreen);
+          }
+
+          &.Failed {
+            background-color: var(--surfacesRed);
+          }
+
+          &.Progress {
+            background-color: var(--surfacesYellow);
+          }
+
+          &-text {
+            &.New {
+              color: var(--brightBlue);
+            }
+
+            &.Completed {
+              color: var(--brightGreen);
+            }
+
+            &.Failed {
+              color: var(--brightRed);
+            }
+
+            &.Progress {
+              color: var(----brightBrown);
+            }
+          }
+        }
+      }
+    }
+  }
+}

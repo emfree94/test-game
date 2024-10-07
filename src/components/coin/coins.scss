@@ -1,0 +1,37 @@
+.coin {
+  display: flex;
+  flex: 1;
+  justify-content: space-between;
+  align-items: center;
+  padding: 9px 12px;
+  background-color: var(--primaryGolden);
+  border-radius: var(--brRadiusThird);
+
+  &:first-child {
+    margin-right: 16px;
+  }
+
+  &-icon {
+    cursor: pointer;
+    padding: 0 2px;
+  }
+
+  &.silver {
+    background-color: var(--neutralSilver);
+
+    .quantity-coin-wrapper {
+      .quantity {
+        margin-left: 4px;
+      }
+    }
+  }
+
+  .quantity-coin-wrapper {
+    display: flex;
+    align-items: center;
+
+    .quantity {
+      margin-left: 2px;
+    }
+  }
+}

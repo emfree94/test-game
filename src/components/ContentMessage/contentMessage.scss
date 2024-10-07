@@ -1,0 +1,28 @@
+.content-message {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+
+  &--emoji {
+    margin-bottom: 8px;
+  }
+
+  &--text {
+    margin-bottom: 4px;
+  }
+
+  .wrapper-text {
+    display: flex;
+    margin-bottom: 12px;
+
+    p {
+      color: var(--neutralAdditional);
+    }
+  }
+}

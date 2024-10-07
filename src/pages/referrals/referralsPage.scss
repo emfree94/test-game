@@ -1,0 +1,11 @@
+.referrals {
+  margin-bottom: 60px;
+  
+  &-wrapper {
+    .referrals-link {
+      display: flex;
+      flex-direction: column;
+      margin-bottom: 20px;
+    }
+  }
+}

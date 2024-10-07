@@ -1,0 +1,48 @@
+.button-component {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  padding: 5px 0;
+  border-radius: var(--brRadiusSecondary);
+  cursor: pointer;
+
+  &.medium {
+    padding: 8px 16px;
+
+    &:first-child {
+      margin-right: 16px;
+    }
+  }
+
+  &.light {
+    background-color: var(--neutralSilver);
+  }
+
+  &.yellow {
+    background-color: var(--primaryAccent);
+  }
+
+  &.transparent {
+    background-color: transparent;
+  }
+
+
+  &.disabled {
+    background-color: var(--neutralInactive);
+    color: var(--neutralAdditional);
+  }
+
+  &.large {
+    padding: 10px 0;
+    color: var(--neutralAdditional);
+  }
+
+  &.small {
+    padding: 5px 0;
+  }
+
+  .button-img {
+    margin-left: 15px;
+  }
+}

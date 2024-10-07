@@ -1,0 +1,45 @@
+.profile {
+  &-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 100%;
+
+    .user-data-wrapper {
+      margin-bottom: 20px;
+    }
+
+    .profile-menu {
+      width: 100%;
+
+      .menu-list {
+        display: flex;
+        flex-direction: column;
+
+        li {
+          width: 100%;
+          background-color: var(--neutralSilver);
+          padding: 9px 12px;
+          border-radius: var(--brRadiusSecondary);
+          margin-bottom: 10px;
+          cursor: pointer;
+
+          &:nth-child(odd) {
+            background-color: var(--primaryGolden);
+          }
+
+           a {
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            width: 100%;
+
+            img {
+              margin-right: 6px;
+            }
+           }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,80 @@
+.transaction {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: var(--primaryGolden);
+  padding: 9px 12px;
+  border-radius: var(--brRadius);
+  cursor: pointer;
+  margin-bottom: 10px;
+
+  &:nth-child(odd) {
+    background-color: var(--neutralSilver);
+  }
+
+
+  &-container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+
+    .transaction-text {
+      margin-bottom: 4px;
+    }
+
+    .status-block {
+      padding: 3px 10px;
+      border-radius: 5px;
+
+      &-text {
+        &.New {
+          color: var(--brightBlue);
+        }
+
+        &.Completed {
+          color: var(--brightGreen);
+        }
+
+        &.Failed {
+          color: var(--brightRed);
+        }
+
+        &.Progress {
+          color: var(----brightBrown);
+        }
+      }
+
+      &.Completed {
+        background-color: var(--surfacesGreen);
+      }
+
+      &.Failed {
+        background-color: var(--surfacesRed);
+      }
+
+      &.Progress {
+        background-color: var(--surfacesYellow);
+      }
+
+      &.New {
+        background-color: var(--surfacesBlue);
+      }
+    }
+  }
+
+  &-price-block {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+
+    .price {
+      margin-right: 4px;
+
+      &.positive {
+        color: var(--brightGreenSecondary);
+      }
+    }
+  }
+}

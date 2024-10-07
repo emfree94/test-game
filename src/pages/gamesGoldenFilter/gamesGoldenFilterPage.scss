@@ -1,0 +1,55 @@
+.games-filter {
+  &-title {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    margin-bottom: 20px;
+
+    h2 {
+      margin: 0 0 0 8px !important;
+    }
+  }
+
+  &-buttons {
+    display: flex;
+    margin-bottom: 45px;
+  }
+
+  &-accordion {
+    margin-top: 48px;
+  }
+
+  .m_38aeed47 {
+    background-color: var(--primaryAccent);
+  }
+
+  .m_c9a9a60a {
+    border: 4px solid var(--primaryAccent);
+  }
+
+  .mantine-Slider-mark {
+    display: none;
+  }
+
+  .mantine-Slider-markLabel {
+    margin-top: 12px;
+    font-size: 12px;
+    font-weight: 500;
+    line-height: 14px;
+    color: var(--neutralDark);
+  }
+
+  .m_c9ade57f::before {
+    background-color: var(--neutralSilver);
+  }
+
+  .m_c9ade57f {
+    height: 4px;
+  }
+
+  .slider-label {
+    background-color: var(--neutralSilver);
+    color: var(--neutralDark);
+    padding: 2px 10px;
+  }
+}

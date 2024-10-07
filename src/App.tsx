@@ -19,6 +19,7 @@ export const App = () => {
   return (
     <div>
       <p>{tg.initDataUnsafe?.user?.username}</p>
+      <button onClick={() => tg.close()}>close</button>
       <main>
         <Outlet />
       </main>

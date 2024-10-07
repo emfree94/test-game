@@ -13,9 +13,8 @@ const tg = window.Telegram.WebApp
 export const App = () => {
   useEffect(() => {
     tg.ready()
+    console.log('tg.initDataUnsafe?.user?', tg.initDataUnsafe?.user)
   }, [])
-
-  console.log('tg.initDataUnsafe?.user?', tg.initDataUnsafe?.user)
 
   return (
     <div>

@@ -36,7 +36,7 @@ bot.command('start', async (ctx) => {
   ctx.reply(
     'Click the button below to visit our website:',
     Markup.inlineKeyboard([
-      [Markup.button.webApp('Visit Website', webUrl)] // This will open the URL in the Telegram browser
+      [Markup.button.webApp('Visit Website', webUrl)] 
     ])
   )
 });

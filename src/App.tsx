@@ -30,7 +30,7 @@ export const App = () => {
     }
 
     setData(initData);
-    setRawInitData(JSON.stringify(window.Telegram.WebApp.initDataUn)); 
+    setRawInitData(window.Telegram.WebApp.initData);
     console.log(initData);
   }, []);
 
@@ -50,8 +50,8 @@ export const App = () => {
         )}
       </div>
       <div>
-        <h3>Raw Init Data:</h3>
-        <pre>{rawInitData}</pre> 
+        <h3>Raw Init Data (JSON):</h3>
+        <pre>{JSON.stringify(rawInitData, null, 2)}</pre> 
       </div>
       <button onClick={() => tg.close()}>Close</button>
       <main>

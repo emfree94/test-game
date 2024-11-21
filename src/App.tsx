@@ -10,13 +10,15 @@ declare global {
 
 export const App = () => {
   const [rawInitData, setRawInitData] = useState<string | null>(null)
-  const [data, setData] = useState(null)
 
   useEffect(() => {
     if (window.Telegram && window.Telegram.WebApp) {
       const tg = window.Telegram.WebApp
       const initData = tg.initData
       setRawInitData(initData) // Store initData in state
+
+      // Debugging: Log initData
+      console.log('Init Data:', initData)
 
       // Send the initData via POST request
       const postData = async () => {
@@ -34,8 +36,7 @@ export const App = () => {
           }
 
           const data = await response.json()
-          setData(data)
-          console.log('Response data:', data) // Handle response as needed
+          console.log('Response data:', data) // Debugging response
         } catch (error) {
           console.error('Error during POST request:', error)
         }
@@ -48,8 +49,9 @@ export const App = () => {
   return (
     <div>
       <div>
-        <h3>Raw Init Data (JSON):{data}</h3>
-        <pre>{JSON.stringify(rawInitData, null, 2)}</pre> {/* Pretty-printing JSON */}
+        <h3>Raw Init Data (JSON):</h3>
+        {/* Ensure rawInitData is valid JSON or provide fallback */}
+        <pre>{JSON.stringify(rawInitData || {}, null, 2)}</pre>
       </div>
       <button onClick={() => window.Telegram.WebApp.close()}>Close</button> {/* Close the Telegram WebApp */}
       <main>

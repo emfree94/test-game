@@ -21,7 +21,7 @@ export const App = () => {
     <div>
       <div>
         <h3>Raw Init Data (JSON):</h3>
-        <pre>{JSON.stringify(rawInitData, null, 2)}</pre>
+        <pre>{JSON.stringify(rawInitData)}</pre>
       </div>
       <button onClick={() => tg.close()}>Close</button>
       <main>

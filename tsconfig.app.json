@@ -4,18 +4,16 @@
     "lib": ["ES2023", "dom"],
     "module": "ESNext",
     "skipLibCheck": true,
-    "strict": true, // Enable stricter type checking
+    "strict": true, 
     "moduleResolution": "bundler",
     "allowImportingTsExtensions": true,
     "isolatedModules": true,
     "moduleDetection": "force",
     "noEmit": true,
-    "resolveJsonModule": true, // If importing JSON files
+    "resolveJsonModule": true, 
 
-    /* JSX Support */
     "jsx": "react-jsx",
 
-    /* Path aliases */
     "baseUrl": "./src",
     "paths": {
       "@components/*": ["components/*"],

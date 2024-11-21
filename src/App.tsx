@@ -37,6 +37,7 @@ export const App = () => {
   return (
     <div>
       <div>
+        <h3>rawInitData</h3>
         <h3>Parsed Init Data:</h3>
         {Object.keys(data).length > 0 ? (
           Object.entries(data).map(([key, value]) => (

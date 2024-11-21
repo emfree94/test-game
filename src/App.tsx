@@ -45,7 +45,7 @@ export const App = () => {
         {isLoading ? (
           <p>Loading...</p>
         ) : isError ? (
-          <p>Error occurred during data fetching.</p>
+          <p>{isError}</p>
         ) : responseData ? (
           <pre>{JSON.stringify(responseData)}</pre>
         ) : (

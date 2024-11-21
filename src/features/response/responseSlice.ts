@@ -3,7 +3,7 @@ import { createSlice } from '@reduxjs/toolkit'
 const responseSlice = createSlice({
   name: 'response',
   initialState: {
-    data: null,
+    data: [],
   },
   reducers: {
     saveResponseData: (state, action) => {

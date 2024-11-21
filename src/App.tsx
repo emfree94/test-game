@@ -15,17 +15,17 @@ declare global {
   }
 }
 
+const tg = window.Telegram.WebApp
+
 export const App = () => {
   const [rawInitData, setRawInitData] = useState<string | null>(null);
   const [postTelegramData, { data, error, isLoading }] = usePostTelegramDataMutation();
 
   useEffect(() => {
-    if (window.Telegram?.WebApp) {
-      const tg = window.Telegram.WebApp;
-      const initData = tg.initialData; // Directly use as per schema
+    if (tg) {
+      const initData = tg.initialData;
       setRawInitData(initData);
 
-      // Trigger the mutation
       postTelegramData(initData)
         .unwrap()
         .then(() => console.log('Data posted successfully'))
@@ -49,13 +49,7 @@ export const App = () => {
         {data && <pre>{JSON.stringify(data, null, 2)}</pre>}
       </div>
       <button
-        onClick={() => {
-          if (window.Telegram?.WebApp?.close) {
-            window.Telegram.WebApp.close();
-          } else {
-            console.error('Telegram WebApp API is not available.');
-          }
-        }}
+        onClick={() => tg.close()}
       >
         Close
       </button>

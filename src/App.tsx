@@ -12,7 +12,7 @@ declare global {
 
 export const App = () => {
   const [rawInitData, setRawInitData] = useState<string | null>(null);
-  const [postTelegramData, { isLoading, isError, data }] = usePostTelegramDataMutation();
+  const [postTelegramData, { isLoading, isError }] = usePostTelegramDataMutation();
   const dispatch = useDispatch();
   const responseData = useSelector((state: RootState) => state.response.data);
 
@@ -22,14 +22,11 @@ export const App = () => {
       const initData = tg.initData;
       setRawInitData(initData);
 
-      // Debugging: Log initData
-      console.log('Init Data:', initData);
-
-      // Send the initData via POST request using RTK Query
       postTelegramData(initData)
         .unwrap()
-        .then(({data}) => {
-          dispatch(saveResponseData(data)); // Save data to Redux
+        .then((response) => {
+          console.log('Response from API:', response);
+          dispatch(saveResponseData(response));
         })
         .catch((error) => {
           console.error('Error during POST request:', error);
@@ -45,7 +42,15 @@ export const App = () => {
       </div>
       <div>
         <h3>Response Data:</h3>
-        <pre>{isLoading ? 'Loading...' : data}</pre>
+        {isLoading ? (
+          <p>Loading...</p>
+        ) : isError ? (
+          <p>Error occurred during data fetching.</p>
+        ) : responseData ? (
+          <pre>{JSON.stringify(responseData)}</pre>
+        ) : (
+          <p>No data received</p>
+        )}
       </div>
       <button onClick={() => window.Telegram.WebApp.close()}>Close</button>
     </div>

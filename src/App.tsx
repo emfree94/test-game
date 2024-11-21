@@ -1,8 +1,8 @@
+// src/App.tsx
 import { useEffect, useState } from 'react';
-import { usePostTelegramDataMutation } from 'features/api/apiSlice';
-import { saveResponseData } from 'features/response/responseSlice';
-import { useDispatch, useSelector } from 'react-redux';
-import { RootState } from 'store/store';
+import { useDispatch } from 'react-redux';
+import { usePostTelegramDataMutation } from './features/api/apiSlice';
+import { saveResponseData } from './features/response/responseSlice';
 
 declare global {
   interface Window {
@@ -12,12 +12,9 @@ declare global {
 
 export const App = () => {
   const [rawInitData, setRawInitData] = useState<string | null>(null);
-  const [postTelegramData, { isLoading }] = usePostTelegramDataMutation();
-  const [checkData, setCheckData] = useState()
+  const [postTelegramData, { isLoading, isError, data }] =
+    usePostTelegramDataMutation();
   const dispatch = useDispatch();
-
-  // Use RootState type here
-  const responseData = useSelector((state: RootState) => state.response.data);
 
   useEffect(() => {
     if (window.Telegram && window.Telegram.WebApp) {
@@ -25,11 +22,15 @@ export const App = () => {
       const initData = tg.initData;
       setRawInitData(initData);
 
+      // Debugging: Log initData
+      console.log('Init Data:', initData);
+
+      // Send the initData via POST request using RTK Query
       postTelegramData(initData)
         .unwrap()
         .then((response) => {
+          console.log('Response from API:', response);
           dispatch(saveResponseData(response)); // Save data to Redux
-          setCheckData(response)
         })
         .catch((error) => {
           console.error('Error during POST request:', error);
@@ -42,17 +43,10 @@ export const App = () => {
       <div>
         <h3>Raw Init Data (JSON):</h3>
         <pre>{rawInitData ? rawInitData : 'Loading...'}</pre>
-        <pre>{checkData ? checkData : 'checkData...'}</pre>
       </div>
       <div>
         <h3>Response Data:</h3>
-        {isLoading ? (
-          <p>Loading...</p>
-        ) : responseData ? (
-          <pre>{JSON.stringify(responseData, null, 2)}</pre>
-        ) : (
-          <p>No data received</p>
-        )}
+        <pre>{isLoading ? 'Loading...' : JSON.stringify(data)}</pre>
       </div>
       <button onClick={() => window.Telegram.WebApp.close()}>Close</button>
     </div>

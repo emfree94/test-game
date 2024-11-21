@@ -1,73 +1,54 @@
-import { Navigation } from '@components/Navigation/Navigation'
-import { useEffect, useState } from 'react'
-import { Outlet } from 'react-router-dom'
+import { usePostTelegramDataMutation } from 'features/api/apiSlice';
+import { saveResponseData } from 'features/response/responseSlice';
+import { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { RootState } from 'store/store';
 
 declare global {
   interface Window {
-    Telegram: any
+    Telegram: any;
   }
 }
 
 export const App = () => {
-  const [rawInitData, setRawInitData] = useState<string | null>(null)
-  const [data, setData] = useState<any>(null)
+  const [rawInitData, setRawInitData] = useState<string | null>(null);
+  const [postTelegramData, { isLoading, isError, data }] = usePostTelegramDataMutation();
+  const dispatch = useDispatch();
+  const responseData = useSelector((state: RootState) => state.response.data);
 
   useEffect(() => {
     if (window.Telegram && window.Telegram.WebApp) {
-      const tg = window.Telegram.WebApp
-      const initData = tg.initData
-      setRawInitData(initData) // Store initData in state
+      const tg = window.Telegram.WebApp;
+      const initData = tg.initData;
+      setRawInitData(initData);
 
       // Debugging: Log initData
-      console.log('Init Data:', initData)
+      console.log('Init Data:', initData);
 
-      // Send the initData via POST request
-      const postData = async () => {
-        try {
-          const response = await fetch(
-            'https://api.chuvachi.online/api/auth/telegram',
-            {
-              method: 'POST',
-              headers: {
-                'Content-Type': 'application/json',
-              },
-              body: JSON.stringify({ initData }), // Send initData as JSON
-            }
-          )
-
-          if (!response.ok) {
-            throw new Error(`HTTP error! Status: ${response.status}`)
-          }
-
-          const data = await response.json()
-          setData(data) // Store API response
-        } catch (error) {
-          console.error('Error during POST request:', error)
-        }
-      }
-
-      postData() // Call postData to send the request
+      // Send the initData via POST request using RTK Query
+      postTelegramData(initData)
+        .unwrap()
+        .then((response) => {
+          console.log('Response from API:', response);
+          dispatch(saveResponseData(response)); // Save data to Redux
+        })
+        .catch((error) => {
+          console.error('Error during POST request:', error);
+        });
     }
-  }, [])
+  }, [dispatch, postTelegramData]);
 
   return (
     <div>
       <div>
         <h3>Raw Init Data (JSON):</h3>
-        {/* Render initData safely */}
         <pre>{rawInitData ? rawInitData : 'Loading...'}</pre>
       </div>
       <div>
         <h3>Response Data:</h3>
-        {/* Render data safely */}
-        <pre>{data ? JSON.stringify(data) : 'Loading...'}</pre>
+        <pre>{isLoading ? 'Loading...' : JSON.stringify(data)}</pre>
       </div>
-      <button onClick={() => window.Telegram.WebApp.close()}>Close</button>{' '}
-      {/* Close the Telegram WebApp */}
-      <main>
-        <Outlet />
-      </main>
-      <Navigation />
+      <button onClick={() => window.Telegram.WebApp.close()}>Close</button>
     </div>
-  )
-}
+  );
+};

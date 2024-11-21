@@ -51,7 +51,7 @@ export const App = () => {
       <div>
         <h3>Raw Init Data (JSON):</h3>
         {/* Ensure rawInitData is valid JSON or provide fallback */}
-        <pre>{JSON.stringify(rawInitData || {}, null, 2)}</pre>
+        <pre>{rawInitData} </pre>
       </div>
       <button onClick={() => window.Telegram.WebApp.close()}>Close</button> {/* Close the Telegram WebApp */}
       <main>

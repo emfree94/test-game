@@ -8,24 +8,24 @@ declare global {
   interface Window {
     Telegram: {
       WebApp: {
-        initialData: string; // Directly a query string, e.g., "query_id=...&user=..."
+        initialData: any;
         close: () => void;
       };
     };
   }
 }
 
-const tg = window.Telegram.WebApp
-
 export const App = () => {
   const [rawInitData, setRawInitData] = useState<string | null>(null);
   const [postTelegramData, { data, error, isLoading }] = usePostTelegramDataMutation();
 
   useEffect(() => {
-    if (tg) {
-      const initData = tg.initialData;
+    if (window.Telegram?.WebApp) {
+      const tg = window.Telegram.WebApp;
+      const initData = JSON.stringify(tg.initialData); // Ensure schema is followed
       setRawInitData(initData);
 
+      // Trigger the mutation
       postTelegramData(initData)
         .unwrap()
         .then(() => console.log('Data posted successfully'))
@@ -39,7 +39,7 @@ export const App = () => {
   return (
     <div>
       <div>
-        <h3>Raw Init Data (Query String):</h3>
+        <h3>Raw Init Data (JSON):</h3>
         <pre>{rawInitData || 'Loading...'}</pre>
       </div>
       <div>
@@ -49,7 +49,13 @@ export const App = () => {
         {data && <pre>{JSON.stringify(data, null, 2)}</pre>}
       </div>
       <button
-        onClick={() => tg.close()}
+        onClick={() => {
+          if (window.Telegram?.WebApp?.close) {
+            window.Telegram.WebApp.close();
+          } else {
+            console.error('Telegram WebApp API is not available.');
+          }
+        }}
       >
         Close
       </button>

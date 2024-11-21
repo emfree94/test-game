@@ -14,14 +14,14 @@ export const App = () => {
   const [rawInitData, setRawInitData] = useState<string>('')
 
   useEffect(() => {
-    setRawInitData(tg.initData)
+    setRawInitData(JSON.stringify(rawInitData))
   }, [])
 
   return (
     <div>
       <div>
         <h3>Raw Init Data (JSON):</h3>
-        <pre>{JSON.stringify(rawInitData)}</pre>
+        <pre>{rawInitData}</pre>
       </div>
       <button onClick={() => tg.close()}>Close</button>
       <main>

@@ -38,7 +38,7 @@ const initialState: ResponseState = {
 
 }
 const responseSlice = createSlice({
-  name: 'response',
+  name: 'userData',
   initialState,
   reducers: {
     userData: (state, action: PayloadAction<UserData>) => {

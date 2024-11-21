@@ -1,12 +1,12 @@
 import { FC } from 'react';
+import { useSelector } from 'react-redux';
+import { RootState } from 'store/store';
 import avatarImg from '@assets/icon/avatar.svg';
 import ratingIcon from '@assets/icon/rating.svg';
 import './profileHeader.scss';
-import { useSelector } from 'react-redux';
-import { RootState } from 'store/store';
 
 export const ProfileHeader: FC = (): JSX.Element => {
-  const { avatar, name } = useSelector((state: RootState) => state.response.data) ?? {};
+  const { avatar, name } = useSelector((state: RootState) => state.userData.data) ?? {};
 
 
   return (

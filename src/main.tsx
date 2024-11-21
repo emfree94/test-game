@@ -18,6 +18,8 @@ import { DepositPage } from '@pages/deposit/DepositPage'
 import { ActiveGamesPage } from '@pages/activeGames/ActiveGamesPage'
 import { GamesGoldenFilterPage } from '@pages/gamesGoldenFilter/GamesGoldenFilterPage'
 import { GamesSilverFilterPage } from '@pages/gamesSilverFilter/GamesSilverFilterPage'
+import { Provider } from 'react-redux'
+import { store } from 'store/store'
 
 const router = createBrowserRouter([
   {
@@ -40,8 +42,14 @@ const router = createBrowserRouter([
       { path: 'profile/referrals', element: <ReferralsPage /> },
       { path: 'profile/deposit', element: <DepositPage /> },
       { path: 'profile/active-games', element: <ActiveGamesPage /> },
-      { path: 'profile/active-games/filter-gold', element: <GamesGoldenFilterPage /> },
-      { path: 'profile/active-games/filter-silver', element: <GamesSilverFilterPage /> },
+      {
+        path: 'profile/active-games/filter-gold',
+        element: <GamesGoldenFilterPage />,
+      },
+      {
+        path: 'profile/active-games/filter-silver',
+        element: <GamesSilverFilterPage />,
+      },
       {
         path: 'profile/balance/transaction/:id',
         element: <TransactionDetail />,
@@ -52,6 +60,8 @@ const router = createBrowserRouter([
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
-    <RouterProvider router={router} />
+    <Provider store={store}>
+      <RouterProvider router={router} />
+    </Provider>
   </StrictMode>
 )

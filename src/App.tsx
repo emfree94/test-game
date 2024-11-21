@@ -1,8 +1,9 @@
 // src/App.tsx
 import { useEffect, useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { usePostTelegramDataMutation } from './features/api/apiSlice';
 import { saveResponseData } from './features/response/responseSlice';
+import { RootState } from 'store/store';
 
 declare global {
   interface Window {
@@ -12,8 +13,8 @@ declare global {
 
 export const App = () => {
   const [rawInitData, setRawInitData] = useState<string | null>(null);
-  const [postTelegramData, { isLoading, isError, data }] =
-    usePostTelegramDataMutation();
+  const [postTelegramData, { isLoading, isError, data }] = usePostTelegramDataMutation();
+  const responseData = useSelector((state: RootState) => state.response.data);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -30,7 +31,7 @@ export const App = () => {
         .unwrap()
         .then((response) => {
           console.log('Response from API:', response);
-          dispatch(saveResponseData(response)); // Save data to Redux
+          dispatch(saveResponseData([response])); // Save data to Redux
         })
         .catch((error) => {
           console.error('Error during POST request:', error);
@@ -43,6 +44,7 @@ export const App = () => {
       <div>
         <h3>Raw Init Data (JSON):</h3>
         <pre>{rawInitData ? rawInitData : 'Loading...'}</pre>
+        <pre>{responseData ? responseData : 'responseData...'}</pre>
       </div>
       <div>
         <h3>Response Data:</h3>

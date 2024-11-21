@@ -11,18 +11,21 @@ declare global {
 const tg = window.Telegram.WebApp
 
 export const App = () => {
-  const [rawInitData, setRawInitData] = useState({})
+  const [rawInitData, setRawInitData] = useState<string | null>(null);
 
   useEffect(() => {
-  const [data, setData] = useState<Record<string, any>>()
-    setRawInitData({initialData: JSON.stringify(tg.initialData)})
-  }, [])
+    if (window.Telegram?.WebApp) {
+      const tg = window.Telegram.WebApp;
+      setRawInitData(JSON.stringify(tg.initialData));
+    } else {
+      console.error('Telegram WebApp API not found');
+    }
+  }, []);
 
   return (
     <div>
       <div>
-        <h3>Raw Init Data (JSON):</h3>
-        <pre>{}</pre>
+        <h3>Raw Init Data {rawInitData}</h3>
       </div>
       <button onClick={() => tg.close()}>Close</button>
       <main>

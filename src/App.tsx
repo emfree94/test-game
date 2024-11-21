@@ -1,49 +1,59 @@
-// File: src/App.tsx
 import { Navigation } from '@components/Navigation/Navigation';
 import { useEffect, useState } from 'react';
 import { Outlet } from 'react-router-dom';
 
 declare global {
   interface Window {
-    Telegram: {
-      WebApp: {
-        initialData: any; // You can refine this type further if you know the exact structure
-        close: () => void;
-      };
-    };
+    Telegram: any;
   }
 }
 
+const tg = window.Telegram.WebApp;
+
 export const App = () => {
-  const [rawInitData, setRawInitData] = useState<string | null>(null);
+  const [data, setData] = useState<Record<string, any>>({});
+  const [rawInitData, setRawInitData] = useState<string>("");
 
   useEffect(() => {
-    if (window.Telegram?.WebApp) {
-      const tg = window.Telegram.WebApp;
-      setRawInitData(JSON.stringify(tg.initialData)); // Format JSON for better readability
-    } else {
-      console.error('Telegram WebApp API is not available.');
-      setRawInitData('Error: Telegram WebApp API not available.');
+    const firstLayerInitData = Object.fromEntries(
+      new URLSearchParams(window.Telegram.WebApp.initData)
+    );
+
+    const initData: Record<string, string> = {};
+
+    for (const key in firstLayerInitData) {
+      try {
+        initData[key] = JSON.parse(firstLayerInitData[key]);
+      } catch {
+        initData[key] = firstLayerInitData[key];
+      }
     }
+
+    setData(initData);
+    setRawInitData(window.Telegram.WebApp.initData);
+    console.log(initData);
   }, []);
 
   return (
     <div>
       <div>
-        <h3>Raw Init Data (JSON):</h3>
-        <pre>{rawInitData || 'Loading...'}</pre>
+        <h3>Parsed Init Data:</h3>
+        {Object.keys(data).length > 0 ? (
+          Object.entries(data).map(([key, value]) => (
+            <p key={key}>
+              <strong>{key}:</strong>{' '}
+              {typeof value === 'object' ? JSON.stringify(value) : value}
+            </p>
+          ))
+        ) : (
+          'Loading...'
+        )}
       </div>
-      <button
-        onClick={() => {
-          if (window.Telegram?.WebApp?.close) {
-            window.Telegram.WebApp.close();
-          } else {
-            console.error('Telegram WebApp API is not available.');
-          }
-        }}
-      >
-        Close
-      </button>
+      <div>
+        <h3>Raw Init Data (JSON):</h3>
+        <pre>{JSON.stringify(rawInitData, null, 2)}</pre> 
+      </div>
+      <button onClick={() => tg.close()}>Close</button>
       <main>
         <Outlet />
       </main>

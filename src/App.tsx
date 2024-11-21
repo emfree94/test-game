@@ -11,10 +11,16 @@ declare global {
 const tg = window.Telegram.WebApp
 
 export const App = () => {
-  const [rawInitData, setRawInitData] = useState<string>('')
+  const [rawInitData, setRawInitData] = useState<string | null>(null)
 
   useEffect(() => {
-    setRawInitData(JSON.stringify(rawInitData))
+    if (window.Telegram?.WebApp) {
+      const tg = window.Telegram.WebApp
+      setRawInitData(JSON.stringify(tg.initialData))
+    } else {
+      console.error('Telegram WebApp API is not available.')
+      setRawInitData('Error: Telegram WebApp API not available.')
+    }
   }, [])
 
   return (

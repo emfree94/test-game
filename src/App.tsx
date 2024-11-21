@@ -39,6 +39,8 @@ export const App = () => {
       <div>
         <h3>Raw Init Data (JSON):</h3>
         <pre>{rawInitData ? rawInitData : 'Loading...'}</pre>
+        <h3> Data (JSON):</h3>
+        <pre>{JSON.stringify(responseData)}</pre>
       </div>
       <div>
         <h3>Response Data:</h3>

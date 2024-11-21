@@ -10,6 +10,7 @@ declare global {
 
 export const App = () => {
   const [rawInitData, setRawInitData] = useState<string | null>(null)
+  const [data, setData] = useState(null)
 
   useEffect(() => {
     if (window.Telegram && window.Telegram.WebApp) {
@@ -23,20 +24,23 @@ export const App = () => {
       // Send the initData via POST request
       const postData = async () => {
         try {
-          const response = await fetch('https://api.chuvachi.online/api/auth/telegram', {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({ initData }), // Send initData as JSON
-          })
+          const response = await fetch(
+            'https://api.chuvachi.online/api/auth/telegram',
+            {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json',
+              },
+              body: JSON.stringify({ initData }), // Send initData as JSON
+            }
+          )
 
           if (!response.ok) {
             throw new Error(`HTTP error! Status: ${response.status}`)
           }
 
           const data = await response.json()
-          console.log('Response data:', data) // Debugging response
+          setData(data)
         } catch (error) {
           console.error('Error during POST request:', error)
         }
@@ -51,9 +55,11 @@ export const App = () => {
       <div>
         <h3>Raw Init Data (JSON):</h3>
         {/* Ensure rawInitData is valid JSON or provide fallback */}
-        <pre> rawInitData: {rawInitData} </pre>
+        {rawInitData}
+        <pre> data: {data} </pre>
       </div>
-      <button onClick={() => window.Telegram.WebApp.close()}>Close</button> {/* Close the Telegram WebApp */}
+      <button onClick={() => window.Telegram.WebApp.close()}>Close</button>{' '}
+      {/* Close the Telegram WebApp */}
       <main>
         <Outlet />
       </main>

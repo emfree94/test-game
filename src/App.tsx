@@ -4,6 +4,8 @@ import { useDispatch, useSelector } from 'react-redux'
 import { usePostTelegramDataMutation } from './features/api/apiSlice'
 import { RootState } from 'store/store'
 import { userData } from 'features/response/responseSlice'
+import { Outlet } from 'react-router-dom'
+import { Navigation } from '@components/Navigation/Navigation'
 
 declare global {
   interface Window {
@@ -56,6 +58,10 @@ export const App = () => {
         <pre>{isLoading ? 'Loading...' : JSON.stringify(data)}</pre>
       </div>
       <button onClick={() => window.Telegram.WebApp.close()}>Close</button>
+      <main>
+        <Outlet />
+      </main>
+      <Navigation />
     </div>
   )
 }

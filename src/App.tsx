@@ -32,7 +32,7 @@ export const App = () => {
         .unwrap()
         .then((response) => {
           console.log('Response from API:', response)
-          dispatch(userData([response.data])) // Save data to Redux
+          dispatch(userData(response.data)) // Save data to Redux
         })
         .catch((error) => {
           console.error('Error during POST request:', error)

@@ -45,7 +45,7 @@ export const App = () => {
       </div>
       <div>
         <h3>Response Data:</h3>
-        <pre>{isLoading ? 'Loading...' : JSON.stringify(data)}</pre>
+        <pre>{isLoading ? 'Loading...' : data}</pre>
       </div>
       <button onClick={() => window.Telegram.WebApp.close()}>Close</button>
     </div>

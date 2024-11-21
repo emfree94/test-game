@@ -21,20 +21,15 @@ export const App = () => {
     usePostTelegramDataMutation()
 
   useEffect(() => {
-    if (window.Telegram?.WebApp) {
-      const tg = window.Telegram.WebApp
-      const initData = JSON.stringify(tg.initialData) // The raw query string
-      setRawInitData(initData)
+    const tg = window.Telegram.WebApp
+    const initData = JSON.stringify(tg.initialData) // The raw query string
+    setRawInitData(initData)
 
-      // Send the raw query string to the API as "initData"
-      postTelegramData({ initData })
-        .unwrap()
-        .then(() => console.log('Data posted successfully'))
-        .catch((err) => console.error('Error posting data:', err))
-    } else {
-      console.error('Telegram WebApp API is not available.')
-      setRawInitData(null)
-    }
+    // Send the raw query string to the API as "initData"
+    postTelegramData({ initData })
+      .unwrap()
+      .then(() => console.log('Data posted successfully'))
+      .catch((err) => console.error('Error posting data:', err))
   }, [postTelegramData])
 
   return (

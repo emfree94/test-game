@@ -11,17 +11,18 @@ declare global {
 const tg = window.Telegram.WebApp
 
 export const App = () => {
-  const [rawInitData, setRawInitData] = useState<string>('')
+  const [rawInitData, setRawInitData] = useState({})
 
   useEffect(() => {
-    setRawInitData(tg.initData)
+  const [data, setData] = useState<Record<string, any>>()
+    setRawInitData({initialData: JSON.stringify(tg.initialData)})
   }, [])
 
   return (
     <div>
       <div>
         <h3>Raw Init Data (JSON):</h3>
-        <pre>{JSON.stringify(rawInitData)}</pre>
+        <pre>{}</pre>
       </div>
       <button onClick={() => tg.close()}>Close</button>
       <main>

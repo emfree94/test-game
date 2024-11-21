@@ -2,8 +2,8 @@
 import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { usePostTelegramDataMutation } from './features/api/apiSlice'
-import { saveResponseData } from './features/response/responseSlice'
 import { RootState } from 'store/store'
+import { userData } from 'features/response/responseSlice'
 
 declare global {
   interface Window {
@@ -32,7 +32,7 @@ export const App = () => {
         .unwrap()
         .then((response) => {
           console.log('Response from API:', response)
-          dispatch(saveResponseData([response])) // Save data to Redux
+          dispatch(userData([response.data])) // Save data to Redux
         })
         .catch((error) => {
           console.error('Error during POST request:', error)

@@ -1,4 +1,4 @@
-import { createSlice } from '@reduxjs/toolkit'
+import { createSlice } from '@reduxjs/toolkit';
 
 const responseSlice = createSlice({
   name: 'response',
@@ -6,12 +6,12 @@ const responseSlice = createSlice({
     data: null,
   },
   reducers: {
-    saveResponseData: (state, action) => {
-      state.data = action.payload
+    userData: (state, action) => {
+      state.data = action.payload;
     },
   },
-})
+});
 
-export const { saveResponseData } = responseSlice.actions
+export const { userData } = responseSlice.actions;
 
-export default responseSlice.reducer
+export default responseSlice.reducer;

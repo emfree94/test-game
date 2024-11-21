@@ -1,12 +1,14 @@
-import { FC } from 'react'
-import avatarImg from '@assets/icon/avatar.svg'
-import ratingIcon from '@assets/icon/rating.svg'
-import './profileHeader.scss'
-import { useSelector } from 'react-redux'
-import { RootState } from 'store/store'
+import { FC } from 'react';
+import avatarImg from '@assets/icon/avatar.svg';
+import ratingIcon from '@assets/icon/rating.svg';
+import './profileHeader.scss';
+import { useSelector } from 'react-redux';
+import { RootState } from 'store/store';
 
-export const ProfileHeader = (): JSX.Element => {
-  const {avatar, name} = useSelector((state: RootState) => state.response.data)
+export const ProfileHeader: FC = (): JSX.Element => {
+  const { avatar, name } = useSelector((state: RootState) => state.response.data) ?? {};
+
+
   return (
     <div className="profile-header">
       <div className="avatar">
@@ -16,7 +18,8 @@ export const ProfileHeader = (): JSX.Element => {
         <img src={ratingIcon} alt="user-rating" />
         <p className="rating text-tiny-regular">33</p>
       </div>
-      <h1 className="nickname title-bold ">{name || 'NickName'}</h1>
+      <h1 className="nickname title-bold ">{name || 'Nickname'}</h1>
     </div>
-  )
-}
+  );
+};
+

@@ -28,9 +28,8 @@ export const App = () => {
       // Send the initData via POST request using RTK Query
       postTelegramData(initData)
         .unwrap()
-        .then((response) => {
-          console.log('Response from API:', response);
-          dispatch(saveResponseData(response)); // Save data to Redux
+        .then(({data}) => {
+          dispatch(saveResponseData(data)); // Save data to Redux
         })
         .catch((error) => {
           console.error('Error during POST request:', error);

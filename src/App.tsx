@@ -13,8 +13,8 @@ declare global {
 export const App = () => {
   const [rawInitData, setRawInitData] = useState<string | null>(null);
   const [postTelegramData, { isLoading, isError, data }] = usePostTelegramDataMutation();
-  const dispatch = useDispatch();
   const responseData = useSelector((state: RootState) => state.response.data);
+  const dispatch = useDispatch();
 
   useEffect(() => {
     if (window.Telegram && window.Telegram.WebApp) {
@@ -46,8 +46,8 @@ export const App = () => {
       </div>
       <div>
         <h3>Response Data:</h3>
-        <pre>{isLoading ? 'Loading...' : JSON.stringify(data)}</pre>
         <pre>{isLoading ? 'Loading...' : JSON.stringify(responseData)}</pre>
+        <pre>{isLoading ? 'Loading...' : JSON.stringify(data)}</pre>
       </div>
       <button onClick={() => window.Telegram.WebApp.close()}>Close</button>
     </div>

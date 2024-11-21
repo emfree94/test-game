@@ -1,9 +1,8 @@
-// src/App.tsx
 import { useEffect, useState } from 'react';
+import { usePostTelegramDataMutation } from 'features/api/apiSlice';
+import { saveResponseData } from 'features/response/responseSlice';
 import { useDispatch, useSelector } from 'react-redux';
-import { usePostTelegramDataMutation } from './features/api/apiSlice';
-import { saveResponseData } from './features/response/responseSlice';
-import { RootState } from './app/store'; // Correctly import RootState
+import { RootState } from 'store/store';
 
 declare global {
   interface Window {

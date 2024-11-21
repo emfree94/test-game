@@ -13,6 +13,7 @@ declare global {
 export const App = () => {
   const [rawInitData, setRawInitData] = useState<string | null>(null);
   const [postTelegramData, { isLoading }] = usePostTelegramDataMutation();
+  const [checkData, setCheckData] = useState()
   const dispatch = useDispatch();
 
   // Use RootState type here
@@ -28,6 +29,7 @@ export const App = () => {
         .unwrap()
         .then((response) => {
           dispatch(saveResponseData(response)); // Save data to Redux
+          setCheckData(response)
         })
         .catch((error) => {
           console.error('Error during POST request:', error);
@@ -40,6 +42,7 @@ export const App = () => {
       <div>
         <h3>Raw Init Data (JSON):</h3>
         <pre>{rawInitData ? rawInitData : 'Loading...'}</pre>
+        <pre>{checkData ? checkData : 'checkData...'}</pre>
       </div>
       <div>
         <h3>Response Data:</h3>

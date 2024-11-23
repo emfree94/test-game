@@ -67,7 +67,7 @@ export const App = () => {
 
       <div className="">{localStorage.getItem('token')}</div>
 
-      <button onClick={() => updateName}>Update name</button>
+      <button onClick={() => updateName()}>Update name</button>
 
       <div className="">{response}</div>
       <main>

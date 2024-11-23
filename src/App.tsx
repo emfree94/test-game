@@ -37,7 +37,7 @@ export const App = () => {
 
   return (
     <div>
-      <div>rawInitData: {JSON.stringify(rawInitData)}</div>
+      <div>rawInitData: {JSON.stringify(data)}</div>
       <button onClick={() => window.Telegram.WebApp.close()}>Close</button>
       <main>
         <Outlet />

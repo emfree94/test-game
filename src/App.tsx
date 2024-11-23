@@ -68,7 +68,7 @@ export const App = () => {
 
       <button onClick={() => updateName}>Update name</button>
 
-      <div className="">{response}</div>
+      <div className="">{JSON.stringify(response)}</div>
       <main>
         <Outlet />
       </main>

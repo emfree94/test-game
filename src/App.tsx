@@ -22,7 +22,7 @@ export const App = () => {
     { isLoading: isUpdateLoading, isError: isUpdateError, data: updateData },
   ] = useUpdateAccountNameMutation()
   const dispatch = useDispatch()
-  const [response, setResponse] = useState()
+  const [response, setResponse] = useState({})
 
   useEffect(() => {
     if (window.Telegram && window.Telegram.WebApp) {

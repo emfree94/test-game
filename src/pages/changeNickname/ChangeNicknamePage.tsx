@@ -46,17 +46,17 @@ export const ChangeNicknamePage: FC = () => {
       <Title text="Зміна нікнейму" marginBottom="14px" />
 
       <div className="form-block">
-          <form action="">
-            <Input
-              {...register('nickname')}
-              errorMessage={errors.nickname?.message}
-              type="text"
-              isValid={isValid}
-              placeholder="Nickname"
-              name="nickname"
-              inputLength={inputLength}
-            />
-          </form>
+        <form action="">
+          <Input
+            {...register('nickname')}
+            errorMessage={errors.nickname?.message}
+            type="text"
+            isValid={isValid}
+            placeholder="Nickname"
+            name="nickname"
+            inputLength={inputLength}
+          />
+        </form>
       </div>
 
       <Button colorVariant="yellow" text="Підтвердити" marginBottom="8px" />

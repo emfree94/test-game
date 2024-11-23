@@ -38,6 +38,8 @@ export const App = () => {
   return (
     <div>
       <div>rawInitData: {JSON.stringify(data)}</div>
+
+      <div className="">{localStorage.getItem('token')}</div>
       <button onClick={() => window.Telegram.WebApp.close()}>Close</button>
       <main>
         <Outlet />

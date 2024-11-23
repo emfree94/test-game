@@ -15,9 +15,14 @@ declare global {
 
 export const App = () => {
   const [rawInitData, setRawInitData] = useState<string | null>(null)
-  const [postTelegramData, { isLoading, isError, data }] = usePostTelegramDataMutation()
-  const [updateAccountName, { isLoading: isUpdateLoading, isError: isUpdateError, data: updateData }] = useUpdateAccountNameMutation()
+  const [postTelegramData, { isLoading, isError, data }] =
+    usePostTelegramDataMutation()
+  const [
+    updateAccountName,
+    { isLoading: isUpdateLoading, isError: isUpdateError, data: updateData },
+  ] = useUpdateAccountNameMutation()
   const dispatch = useDispatch()
+  const [response, setResponse] = useState()
 
   useEffect(() => {
     if (window.Telegram && window.Telegram.WebApp) {
@@ -40,14 +45,17 @@ export const App = () => {
   const updateName = async () => {
     const payload = {
       name: 'test',
-      email: "ruslan_test@rr.rr",
-      phone: "+ (38) 067 123 4567"
+      email: 'ruslan_test@rr.rr',
+      phone: '+ (38) 067 123 4567',
     }
 
     try {
-      const response = await updateAccountName(payload).unwrap() // Execute PUT request
+      const data = await updateAccountName(payload).unwrap() // Execute PUT request
+
+      setResponse(data)
       console.log('Response from PUT request:', response)
     } catch (error) {
+      setResponse(error)
       console.error('Error during PUT request:', error)
     }
   }
@@ -57,8 +65,10 @@ export const App = () => {
       <div>rawInitData: {JSON.stringify(data)}</div>
 
       <div className="">{localStorage.getItem('token')}</div>
-      <button onClick={() => window.Telegram.WebApp.close()}>Close</button>
+
       <button onClick={() => updateName}>Update name</button>
+
+      <div className="">{response}</div>
       <main>
         <Outlet />
       </main>

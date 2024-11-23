@@ -42,7 +42,7 @@ const responseSlice = createSlice({
   reducers: {
     userData: (state, action: PayloadAction<UserData>) => {
       state.data = action.payload
-      localStorage.setItem('token', 'test_token')
+      localStorage.setItem('token', state.data.token)
     },
   },
 })

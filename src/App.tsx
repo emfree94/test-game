@@ -45,8 +45,8 @@ export const App = () => {
 
   const updateName = async () => {
     const payload = {
-      name: 'test',
-      email: 'ruslan_test@rr.rr',
+      name: 'test reponse',
+      email: 'ruslan_test_ruslan@rr.rr',
       phone: '+ (38) 067 123 4567',
     }
 
@@ -69,7 +69,7 @@ export const App = () => {
 
       <button onClick={() => updateName()}>Update name</button>
 
-      <div className="">{response}</div>
+      <div className="">{JSON.stringify(response)}</div>
       <main>
         <Outlet />
       </main>

@@ -6,6 +6,7 @@ import { userData } from 'features/response/responseSlice'
 import { Outlet } from 'react-router-dom'
 import { Navigation } from '@components/Navigation/Navigation'
 import { useUpdateAccountNameMutation } from 'features/api/putSlice'
+import { any } from 'zod'
 
 declare global {
   interface Window {
@@ -22,7 +23,7 @@ export const App = () => {
     { isLoading: isUpdateLoading, isError: isUpdateError, data: updateData },
   ] = useUpdateAccountNameMutation()
   const dispatch = useDispatch()
-  const [response, setResponse] = useState({})
+  const [response, setResponse] = useState<string>('')
 
   useEffect(() => {
     if (window.Telegram && window.Telegram.WebApp) {
@@ -54,7 +55,7 @@ export const App = () => {
 
       setResponse(data)
       console.log('Response from PUT request:', response)
-    } catch (error) {
+    } catch (error: any) {
       setResponse(error)
       console.error('Error during PUT request:', error)
     }
@@ -68,7 +69,7 @@ export const App = () => {
 
       <button onClick={() => updateName}>Update name</button>
 
-      <div className="">{JSON.stringify(response)}</div>
+      <div className="">{response}</div>
       <main>
         <Outlet />
       </main>

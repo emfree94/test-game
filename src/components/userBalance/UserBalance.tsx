@@ -18,15 +18,14 @@ export const UserBalance: FC<UserBalanceProps> = ({
   goldBalance,
 }) => {
   const navigate = useNavigate()
-  const balances = useSelector((state: RootState) => state.balances.balances)
+  const balanceData = useSelector((state: RootState) => state.balances.balances)
 
-  const silverCoinBalance = balances?.['silver-coins']?.balance || '0'
-  const goldCoinBalance = balances?.['golden-coins']?.balance || '0'
+  const silverCoinBalance = balanceData?.['silver-coins']?.balance || '0'
+  const goldCoinBalance = balanceData?.['golden-coins']?.balance || '0'
 
   return (
     <>
       <div className="user-balance">
-        <div>{JSON.stringify(balances)}</div>
         <div className="coins" onClick={() => navigate('/transfer-costs')}>
           <img src={goldenCoin} alt="golden-coin" />
           <p className="coin-balance text-semi-bold">

@@ -17,30 +17,32 @@ export const UserBalance: FC<UserBalanceProps> = ({
   goldBalance,
 }) => {
   const navigate = useNavigate()
-  const { data, error, isLoading } = useGetAccountBalanceQuery({});
+  const { data, error, isLoading } = useGetAccountBalanceQuery({})
 
-  const silverCoinBalance = data?.data.balance?.['silver-coins'].balance;
+  const silverCoinBalance = data?.data.balance?.['silver-coins'].balance
 
   return (
-    <div className="user-balance">
+    <>
       <div>SILVER - {silverCoinBalance}</div>
-      {/* <div>DATA - {JSON.stringify(data)}</div> */}
-      
-      <div className="coins" onClick={() => navigate('/transfer-costs')}>
-        <img src={goldenCoin} alt="golden-coin" />
-        <p className="coin-balance text-semi-bold">
-          {formatAmount(goldBalance)}
-        </p>
-        <img className="add-coin" src={addCircleIcon} alt="golden-coin" />
-      </div>
+      <div className="user-balance">
+        {/* <div>DATA - {JSON.stringify(data)}</div> */}
 
-      <div className="coins" onClick={() => navigate('/exchange-coin')}>
-        <img src={silverCoin} alt="golden-coin" />
-        <p className="coin-balance text-semi-bold">
-          {formatAmount(silverBalance)}
-        </p>
-        <img className="add-coin" src={addCircleIcon} alt="golden-coin" />
+        <div className="coins" onClick={() => navigate('/transfer-costs')}>
+          <img src={goldenCoin} alt="golden-coin" />
+          <p className="coin-balance text-semi-bold">
+            {formatAmount(goldBalance)}
+          </p>
+          <img className="add-coin" src={addCircleIcon} alt="golden-coin" />
+        </div>
+
+        <div className="coins" onClick={() => navigate('/exchange-coin')}>
+          <img src={silverCoin} alt="golden-coin" />
+          <p className="coin-balance text-semi-bold">
+            {formatAmount(silverBalance)}
+          </p>
+          <img className="add-coin" src={addCircleIcon} alt="golden-coin" />
+        </div>
       </div>
-    </div>
+    </>
   )
 }

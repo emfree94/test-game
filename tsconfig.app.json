@@ -11,16 +11,17 @@
     "moduleDetection": "force",
     "noEmit": true,
     "resolveJsonModule": true, 
-
     "jsx": "react-jsx",
-
     "baseUrl": "./src",
     "paths": {
       "@components/*": ["components/*"],
       "@utils/*": ["utils/*"],
       "@styles/*": ["styles/*"],
       "@assets/*": ["assets/*"],
-      "@pages/*": ["pages/*"]
+      "@pages/*": ["pages/*"],
+      "@routes/*": ["routes/*"],
+      "@features/*": ["features/*"],
+      "@store/*": ["store/*"],
     }
   },
   "include": ["src/**/*.ts", "src/**/*.tsx", "vite.config.ts"]

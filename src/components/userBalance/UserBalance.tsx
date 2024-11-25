@@ -30,7 +30,7 @@ export const UserBalance: FC<UserBalanceProps> = ({
     }
   }, [data, dispatch]);
 
-  const silverCoinBalance = data?.data?.balances?.['silver-coins']?.balance
+  const silverCoinBalance = typeof(data?.data?.balances?.['silver-coins']?.balance)
   const goldCoinBalance = data?.data?.balances?.['golden-coins']?.balance;
 
   return (

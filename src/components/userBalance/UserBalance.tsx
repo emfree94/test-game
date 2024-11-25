@@ -1,12 +1,11 @@
-import { FC, useEffect } from 'react'
+import { FC } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { formatAmount } from '@utils/utils'
 import addCircleIcon from '@assets/icon/add_circle.svg'
 import goldenCoin from '@assets/icon/golden_coins2.svg'
 import silverCoin from '@assets/icon/silver_coins.svg'
-import { useGetAccountBalanceQuery } from '@features/api/putSlice'
-import { setBalances } from '@features/response/balanceSlice'
-import { useDispatch } from 'react-redux'
+import { useSelector } from 'react-redux'
+import { RootState } from '@store/store'
 import './userBalance.scss'
 
 interface UserBalanceProps {
@@ -19,18 +18,10 @@ export const UserBalance: FC<UserBalanceProps> = ({
   goldBalance,
 }) => {
   const navigate = useNavigate()
-  const { data, error, isLoading } = useGetAccountBalanceQuery({})
-  const dispatch = useDispatch()
+  const balances = useSelector((state: RootState) => state.balances.balances)
 
-  // Dispatch data to the store once fetched
-  useEffect(() => {
-    if (data) {
-      dispatch(setBalances(data?.data.balances))
-    }
-  }, [data, dispatch])
-
-  const silverCoinBalance = data?.data?.balances?.['silver-coins']?.balance
-  const goldCoinBalance = data?.data?.balances?.['golden-coins']?.balance
+  const silverCoinBalance = balances?.['silver-coins']?.balance || '0'
+  const goldCoinBalance = balances?.['golden-coins']?.balance || '0'
 
   return (
     <>
@@ -38,7 +29,7 @@ export const UserBalance: FC<UserBalanceProps> = ({
         <div className="coins" onClick={() => navigate('/transfer-costs')}>
           <img src={goldenCoin} alt="golden-coin" />
           <p className="coin-balance text-semi-bold">
-            {isLoading ? 'Loading...' : formatAmount(goldCoinBalance)}
+            {formatAmount(goldCoinBalance)}
           </p>
           <img className="add-coin" src={addCircleIcon} alt="golden-coin" />
         </div>
@@ -46,7 +37,7 @@ export const UserBalance: FC<UserBalanceProps> = ({
         <div className="coins" onClick={() => navigate('/exchange-coin')}>
           <img src={silverCoin} alt="golden-coin" />
           <p className="coin-balance text-semi-bold">
-            {isLoading ? 'Loading...' : formatAmount(silverCoinBalance)}
+            {formatAmount(silverCoinBalance)}
           </p>
           <img className="add-coin" src={addCircleIcon} alt="golden-coin" />
         </div>

@@ -19,7 +19,7 @@ export const UserBalance: FC<UserBalanceProps> = ({
   const navigate = useNavigate()
   const { data, error, isLoading } = useGetAccountBalanceQuery({})
 
-  const silverCoinBalance = data?.data.balance?.['silver-coins'].balance
+  const silverCoinBalance = data?.balance?.['silver-coins'].balance
 
   return (
     <>

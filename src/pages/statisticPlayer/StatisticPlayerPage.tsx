@@ -1,6 +1,6 @@
 import { ProfileHeader } from '@components/profile/profileHeader/ProfileHeader'
 import { UserBalance } from '@components/userBalance/UserBalance'
-import { ContentMessage } from '@components/contentMessage/ContentMessage'
+// import { ContentMessage } from '@components/contentMessage/ContentMessage'
 import goldenCoin from '@assets/icon/golden_coins3.svg'
 import silverCoin from '@assets/icon/silver_coins2.svg'
 import groupIcon from '@assets/icon/group.svg'
@@ -92,7 +92,7 @@ export const StatisticPlayerPage = () => {
         </ul>
       </div>
 
-      {gameInfo.length > 0 ? (
+      {/* {gameInfo.length > 0 ? (
         <ContentMessage
           description="Але їх завжди можна покращити"
           text="Маєш гарні результати"
@@ -104,7 +104,7 @@ export const StatisticPlayerPage = () => {
           variant="fail"
           buttonText="Грати"
         />
-      )}
+      )} */}
     </div>
   )
 }

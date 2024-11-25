@@ -1,5 +1,5 @@
 import { Title } from '@components/title/Title'
-import { ContentMessage } from '@components/contentMessage/ContentMessage'
+// import { ContentMessage } from '@components/contentMessage/ContentMessage'
 import { ReferralLink } from '@components/referralLink/ReferralLink'
 import { Referral } from '@components/referral/Referral'
 import './referralsPage.scss'
@@ -165,12 +165,13 @@ export const ReferralsPage = () => {
         <div className="referrals-lists">
           <Title text="Реферали" />
           {referrals.length === 0 ? (
-            <ContentMessage
-              text="У тебе ще немає рефералів"
-              description="Поділись запрошенням зі своїми друзями"
-            >
-              <ReferralLink />
-            </ContentMessage>
+            <></>
+            // <ContentMessage
+            //   text="У тебе ще немає рефералів"
+            //   description="Поділись запрошенням зі своїми друзями"
+            // >
+            //   <ReferralLink />
+            // </ContentMessage>
           ) : (
             referrals?.map(
               (

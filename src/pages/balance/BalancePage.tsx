@@ -8,7 +8,7 @@ import {
   TransactionProps,
 } from '@components/transaction/Transaction'
 import { Coins } from '@components/coin/Coins'
-import { ContentMessage } from '@components/contentMessage/ContentMessage'
+// import { ContentMessage } from '@components/contentMessage/ContentMessage'
 import './balancePage.scss'
 
 const transactions: TransactionProps[] = [
@@ -192,11 +192,12 @@ export const BalancePage: FC = () => {
           )
         )
       ) : (
-        <ContentMessage
-          variant="fail"
-          text="У тебе ще немає транзакцій"
-          buttonText="Поповнити рахунок"
-        />
+        <></>
+        // <ContentMessage
+        //   variant="fail"
+        //   text="У тебе ще немає транзакцій"
+        //   buttonText="Поповнити рахунок"
+        // />
       )}
     </div>
   )

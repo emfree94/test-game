@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { Title } from '@components/title/Title'
 import { Friend } from '@components/friend/Friend'
-import { ContentMessage } from '@components/contentMessage/ContentMessage'
+// import { ContentMessage } from '@components/contentMessage/ContentMessage'
 import { ButtonArrow } from '@components/buttons/buttonArrow/ButtonArrow'
 import { User } from '@pages/friendsRequests/FriendsRequestsPage'
 import './friendsPage.scss'
@@ -118,11 +118,12 @@ export const FriendsPage = () => {
   return (
     <div className="friends">
       {usersData.length === 0 ? (
-        <ContentMessage
-          text="У тебе ще немає друзів"
-          buttonText="Добавити друзів"
-          variant="fail"
-        />
+        <></>
+        // <ContentMessage
+        //   text="У тебе ще немає друзів"
+        //   buttonText="Добавити друзів"
+        //   variant="fail"
+        // />
       ) : (
         <>
           <div className="friends--wrapper">

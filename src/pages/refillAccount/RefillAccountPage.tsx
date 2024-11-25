@@ -4,7 +4,7 @@ import { copyTextToClipboard } from '@utils/utils'
 import { ButtonArrow } from '@components/buttons/buttonArrow/ButtonArrow'
 import { Title } from '@components/title/Title'
 import { Button } from '@components/buttons/button/Button'
-import { ContentMessage } from '@components/contentMessage/ContentMessage'
+// import { ContentMessage } from '@components/contentMessage/ContentMessage'
 import linkIcon from '@assets/icon/copy.svg'
 import qrImage from '@assets/img/qrCode.png'
 import './refillAccountPage.scss'
@@ -77,12 +77,13 @@ export const RefillAccountPage = () => {
           </div>
         </>
       ) : (
-        <ContentMessage
-          text="Оплата обробляється"
-          description="Це може зайняти кілька хвилин"
-          buttonText="Переглянути статус платежу"
-          hideButtonIcon
-        />
+        <></>
+        // <ContentMessage
+        //   text="Оплата обробляється"
+        //   description="Це може зайняти кілька хвилин"
+        //   buttonText="Переглянути статус платежу"
+        //   hideButtonIcon
+        // />
       )}
     </div>
   )

@@ -23,8 +23,8 @@ export const UserBalance: FC<UserBalanceProps> = ({
 
   return (
     <div className="user-balance">
-      <div>DATA - {JSON.stringify(data)}</div>
       <div>SILVER - {silverCoinBalance}</div>
+      <div>DATA - {JSON.stringify(data)}</div>
       
       <div className="coins" onClick={() => navigate('/transfer-costs')}>
         <img src={goldenCoin} alt="golden-coin" />

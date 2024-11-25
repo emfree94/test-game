@@ -21,27 +21,24 @@ export const UserBalance: FC<UserBalanceProps> = ({
   const navigate = useNavigate()
   const { data, error, isLoading } = useGetAccountBalanceQuery({})
   const dispatch = useDispatch()
-  
 
   // Dispatch data to the store once fetched
   useEffect(() => {
     if (data) {
-      dispatch(setBalances(data?.data.balances));
+      dispatch(setBalances(data?.data.balances))
     }
-  }, [data, dispatch]);
+  }, [data, dispatch])
 
-  const silverCoinBalance = typeof(data?.data?.balances?.['silver-coins']?.balance)
-  const goldCoinBalance = data?.data?.balances?.['golden-coins']?.balance;
+  const silverCoinBalance = data?.data?.balances?.['silver-coins']?.balance
+  const goldCoinBalance = data?.data?.balances?.['golden-coins']?.balance
 
   return (
     <>
       <div className="user-balance">
-        <div>SILVER - {silverCoinBalance}</div>
-        <div>GOLD - {goldCoinBalance}</div>
         <div className="coins" onClick={() => navigate('/transfer-costs')}>
           <img src={goldenCoin} alt="golden-coin" />
           <p className="coin-balance text-semi-bold">
-            {formatAmount(silverBalance)}
+            {isLoading ? 'Loading...' : formatAmount(goldCoinBalance)}
           </p>
           <img className="add-coin" src={addCircleIcon} alt="golden-coin" />
         </div>
@@ -49,7 +46,7 @@ export const UserBalance: FC<UserBalanceProps> = ({
         <div className="coins" onClick={() => navigate('/exchange-coin')}>
           <img src={silverCoin} alt="golden-coin" />
           <p className="coin-balance text-semi-bold">
-            {formatAmount(silverBalance)}
+            {isLoading ? 'Loading...' : formatAmount(silverCoinBalance)}
           </p>
           <img className="add-coin" src={addCircleIcon} alt="golden-coin" />
         </div>

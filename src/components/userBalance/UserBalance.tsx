@@ -19,13 +19,13 @@ export const UserBalance: FC<UserBalanceProps> = ({
   const navigate = useNavigate()
   const { data, error, isLoading } = useGetAccountBalanceQuery({})
 
-  const silverCoinBalance = data?.balance?.['silver-coins'].balance
+  const silverCoinBalance = data?.data?.balances?.['silver-coins']?.balance;
 
   return (
     <>
       <div>Data - {JSON.stringify(data?.balance)}</div>
       <div className="user-balance">
-        {/* <div>DATA - {JSON.stringify(data)}</div> */}
+        <div>coin - {silverCoinBalance}</div>
 
         <div className="coins" onClick={() => navigate('/transfer-costs')}>
           <img src={goldenCoin} alt="golden-coin" />

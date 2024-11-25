@@ -1,11 +1,11 @@
 import React from 'react'
 import { Outlet } from 'react-router-dom'
-import { Navigation } from '@components/navigation/Navigation'
 import { useEffect, useState } from 'react'
 import { usePostTelegramDataMutation } from 'features/api/apiSlice'
 import { useUpdateAccountNameMutation } from 'features/api/putSlice'
 import { useDispatch } from 'react-redux'
 import { userData } from 'features/response/responseSlice'
+import { Navigation } from '@components/navigation/Navigation'
 
 declare global {
   interface Window {

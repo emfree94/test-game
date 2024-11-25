@@ -82,16 +82,16 @@ export const ChangeNicknamePage: FC = () => {
             name="name"
             inputLength={inputLength}
           />
-        </form>
 
-        <Button
-          type="submit"
-          colorVariant="yellow"
-          text="Підтвердити"
-          marginBottom="8px"
-        />
+          <Button
+            type="submit"
+            colorVariant="yellow"
+            text="Підтвердити"
+            marginBottom="8px"
+          />
+        </form>
       </div>
-      
+
       <Button onClick={handleEditClick} text="Скасувати" />
     </div>
   )

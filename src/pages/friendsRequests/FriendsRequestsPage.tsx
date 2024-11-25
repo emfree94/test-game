@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { Title } from '@components/title/Title'
 import { Friend } from '@components/friend/Friend'
-import ContentMessage from '@components/contentMessage/ContentMessage'
+import { ContentMessage } from '@components/contentMessage/ContentMessage'
 import '@pages/friends/friendsPage.scss'
 
 export interface User {

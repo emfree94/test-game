@@ -22,7 +22,10 @@
       "@utils/*": ["utils/*"],
       "@styles/*": ["styles/*"],
       "@assets/*": ["assets/*"],
-      "@pages/*": ["pages/*"]
+      "@pages/*": ["pages/*"],
+      "@routes/*": ["routes/*"],
+      "@features/*": ["features/*"],
+      "@store/*": ["store/*"],
     }
   },
   "include": ["src/**/*.ts", "src/**/*.tsx", "vite.config.ts"]

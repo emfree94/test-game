@@ -16,7 +16,7 @@ interface ContentMessageProps {
   hideButton?: boolean
 }
 
-const ContentMessage: FC<ContentMessageProps> = ({
+export const ContentMessage: FC<ContentMessageProps> = ({
   text,
   buttonText = 'Поповнити рахунок',
   variant = 'success',
@@ -48,5 +48,3 @@ const ContentMessage: FC<ContentMessageProps> = ({
         )}
   </div>
 )
-
-export default ContentMessage

@@ -6,24 +6,11 @@
   background-color: var(--neutralSilver);
   border-radius: var(--brRadiusSecondary);
   width: 100%;
-  
-  &.margin {
-    width: calc(100% - 40px);
-  }
 
   .referrals-link-container {
     display: flex;
     align-items: center;
     justify-content: flex-end;
-
-    .user-link-id {
-      width: 15ch;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      display: inline-block;
-      color: var(--neutralAdditional);
-    }
 
     img {
       cursor: pointer;

@@ -1,9 +1,9 @@
 import { FC } from 'react'
+import { useNavigate } from 'react-router-dom'
+import { formatAmount } from '@utils/utils'
 import goldenCoin from '@assets/icon/golden_coins2.svg'
 import silverCoin from '@assets/icon/silver_coins.svg'
 import './transaction.scss'
-import { useNavigate } from 'react-router-dom'
-import { formatAmount } from '@utils/utils'
 
 export interface TransactionProps {
   id: number | string

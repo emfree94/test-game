@@ -1,5 +1,4 @@
 import { NavLink } from 'react-router-dom'
-import './navigation.scss'
 import {
   ActiveGamesIcon,
   CreateGameIcon,
@@ -7,6 +6,15 @@ import {
   ProfileIcon,
   TopPlayersIcon,
 } from 'icons'
+import './navigation.scss'
+
+const navigationList = [
+  { url: '/', Icon: HomeIcon },
+  { url: '/active-games', Icon: ActiveGamesIcon },
+  { url: '/create-game', Icon: CreateGameIcon },
+  { url: '/rating-players', Icon: TopPlayersIcon },
+  { url: '/profile', Icon: ProfileIcon },
+]
 
 export const Navigation = () => {
   return (
@@ -14,31 +22,13 @@ export const Navigation = () => {
       <div className="navigation">
         <nav>
           <ul className="navigation-list">
-            <li>
-              <NavLink to="/">
-                <HomeIcon />
-              </NavLink>
-            </li>
-            <li>
-              <NavLink to="/active-gamers">
-                <ActiveGamesIcon />
-              </NavLink>
-            </li>
-            <li>
-              <NavLink to="/create-game">
-                <CreateGameIcon />
-              </NavLink>
-            </li>
-            <li>
-              <NavLink to="/rating-players">
-                <TopPlayersIcon />
-              </NavLink>
-            </li>
-            <li>
-              <NavLink to="/profile">
-                <ProfileIcon />
-              </NavLink>
-            </li>
+            {navigationList.map(({ url, Icon }, index) => (
+              <li key={index + url}>
+                <NavLink to={url}>
+                  <Icon />
+                </NavLink>
+              </li>
+            ))}
           </ul>
         </nav>
       </div>

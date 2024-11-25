@@ -7,6 +7,10 @@
   padding: 7px 12px;
   margin-bottom: 10px;
 
+  &.gold {
+    background-color: var(--primaryGolden) ;
+  }
+
   .referral-block-left {
     display: flex;
     justify-content: flex-start;

@@ -1,16 +1,16 @@
 import { FC, ReactNode } from 'react'
+import { Button } from '@components/buttons/button/Button'
 import failEmojiImg from '@assets/img/emojiSmile.png'
 import successEmojiImg from '@assets/img/emojiSuccess.png'
 import goDownIcon from '@assets/icon/go_down.svg'
-import { Button } from '@components/buttons/button/Button'
 import iconPlay from '@assets/icon/play_arrow.svg'
-
 import './contentMessage.scss'
 
 interface ContentMessageProps {
   text: string
   buttonText?: string
   variant?: 'success' | 'fail'
+  hideButtonIcon?: boolean
   description?: string
   children?: ReactNode
   hideButton?: boolean
@@ -20,6 +20,7 @@ export const ContentMessage: FC<ContentMessageProps> = ({
   text,
   buttonText = 'Поповнити рахунок',
   variant = 'success',
+  hideButtonIcon,
   hideButton,
   description = 'Це завжди можна виправити!',
   children,
@@ -40,7 +41,7 @@ export const ContentMessage: FC<ContentMessageProps> = ({
       ? children
       : !hideButton && (
           <Button
-            buttonIcon={iconPlay}
+            buttonIcon={!hideButtonIcon ? iconPlay : undefined}
             text={buttonText}
             colorVariant="yellow"
           />

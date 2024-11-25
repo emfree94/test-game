@@ -1,5 +1,5 @@
-import { Link } from 'react-router-dom'
 import { FC } from 'react'
+import { Link } from 'react-router-dom'
 import { ProfileHeader } from '@components/profile/profileHeader/ProfileHeader'
 import { UserBalance } from '@components/userBalance/UserBalance'
 import settingsIcon from '@assets/icon/settings.svg'

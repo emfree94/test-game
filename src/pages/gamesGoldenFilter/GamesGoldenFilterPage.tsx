@@ -1,32 +1,31 @@
+import { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
+import { RangeSlider, MantineProvider } from '@mantine/core'
 import { Button } from '@components/buttons/button/Button'
 import { ButtonArrow } from '@components/buttons/buttonArrow/ButtonArrow'
 import { Title } from '@components/title/Title'
-import { useState } from 'react'
-import { useNavigate } from 'react-router-dom'
-import './gamesGoldenFilterPage.scss'
-import { RangeSlider, MantineProvider } from '@mantine/core'
 import { CountryAccordion } from '@components/countryAccordion/CountryAccordion'
 import '@mantine/core/styles.css'
-
+import './gamesGoldenFilterPage.scss'
 
 export const GamesGoldenFilterPage = () => {
   const [activeComponent] = useState('gold')
-  const [range, setRange] = useState<[number, number]>([100, 400])
+  const [range, setRange] = useState<[number, number]>([10, 50])
 
   const navigate = useNavigate()
 
   const marks = [
+    { value: 10, label: '10' },
+    { value: 20, label: '20' },
+    { value: 30, label: '30' },
+    { value: 40, label: '40' },
+    { value: 50, label: '50' },
+    { value: 60, label: '60' },
+    { value: 70, label: '70' },
+    { value: 80, label: '80' },
+    { value: 90, label: '90' },
     { value: 100, label: '100' },
-    { value: 200, label: '200' },
-    { value: 300, label: '300' },
-    { value: 400, label: '400' },
-    { value: 500, label: '500' },
-    { value: 600, label: '600' },
-    { value: 700, label: '700' },
-    { value: 800, label: '800' },
-    { value: 900, label: '900' },
-    { value: 1000, label: '1000' },
-  ];
+  ]
 
   const handleRangeChange = (value: [number, number]) => {
     setRange(value)
@@ -38,7 +37,7 @@ export const GamesGoldenFilterPage = () => {
     <div className="games-filter">
       <div className="games-filter-title">
         <ButtonArrow
-          onClick={() => navigate('/profile/active-games')}
+          onClick={() => navigate('/active-games')}
           arrowBack
         />
         <Title text="Фільтр" />
@@ -48,13 +47,13 @@ export const GamesGoldenFilterPage = () => {
           text="Silver"
           size="medium"
           colorVariant={activeComponent === 'silver' ? 'yellow' : 'light'}
-          className=''
-          onClick={() => navigate('/profile/active-games/filter-silver')}
+          className=""
+          onClick={() => navigate('/active-games/filter-silver')}
         />
         <Button
           text="Golden"
           size="medium"
-          fontSize='text-bold'
+          fontSize="text-bold"
           colorVariant={activeComponent === 'gold' ? 'yellow' : 'light'}
         />
       </div>
@@ -62,11 +61,11 @@ export const GamesGoldenFilterPage = () => {
       <div className="games-filter-slider">
         <MantineProvider>
           <RangeSlider
-          classNames={{label: 'slider-label'}}
-            minRange={50}
-            min={100}
-            max={1000}
-            step={50}
+            classNames={{ label: 'slider-label' }}
+            minRange={5}
+            min={10}
+            max={100}
+            step={5}
             onChange={handleRangeChange}
             value={range}
             marks={marks}

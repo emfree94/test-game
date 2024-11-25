@@ -1,0 +1,70 @@
+.payout {
+  &--balance {
+    width: 100%;
+    height: 42px;
+    background-color: var(--primaryGolden);
+    border-radius: var(--brRadiusSecondary);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+
+    img {
+      margin-right: 2px;
+    }
+  }
+
+  &--form-block {
+    .form-wrapper {
+      &__buttons {
+        display: flex;
+        gap: 10px;
+        margin-bottom: 20px;
+      }
+
+      &__coin_block {
+        margin-bottom: 20px;
+
+        .coin-container {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          background-color: var(--neutralSilver);
+          padding: 7px 12px;
+          border-radius: var(--brRadius);
+
+          .coin-price {
+            color: var(--brightGreenSecondary);
+          }
+
+          &__wrapper {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            &--block {
+              margin-left: 8px;
+
+              &__head {
+                display: flex;
+                justify-content: flex-start;
+                align-items: center;
+                margin-bottom: 4px;
+
+                img {
+                  margin-right: 4px;
+                }
+              }
+            }
+          }
+        }
+      }
+
+      &__wallet {
+        .language-accordion.network {
+         margin: 16px 0 20px 0;
+        }
+      }
+    }
+  }
+}

@@ -10,6 +10,7 @@
     padding: 4px 12px;
     background-color: var(--neutralSilver);
     border-radius: var(--brRadius);
+    cursor: pointer;
 
     &:last-child {
       margin-left: 12px;
@@ -20,7 +21,7 @@
     }
 
     .coin-balance {
-      margin-right: 2px;
+      margin-left: 4px;
     }
 
     .add-coin {

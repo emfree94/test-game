@@ -1,10 +1,10 @@
-import { useEffect, useState } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
-import { usePostTelegramDataMutation } from './features/api/apiSlice'
-import { userData } from 'features/response/responseSlice'
 import { Outlet } from 'react-router-dom'
-import { Navigation } from '@components/Navigation/Navigation'
+import { Navigation } from '@components/navigation/Navigation'
+import { useEffect, useState } from 'react'
+import { usePostTelegramDataMutation } from 'features/api/apiSlice'
 import { useUpdateAccountNameMutation } from 'features/api/putSlice'
+import { useDispatch } from 'react-redux'
+import { userData } from 'features/response/responseSlice'
 
 declare global {
   interface Window {
@@ -58,16 +58,9 @@ export const App = () => {
       console.error('Error during PUT request:', error)
     }
   }
-
+  
   return (
-    <div>
-      <div>rawInitData: {JSON.stringify(data)}</div>
-
-      <div className="">{localStorage.getItem('token')}</div>
-
-      <button onClick={() => updateName()}>Update name</button>
-
-      <div className="">{JSON.stringify(response)}</div>
+    <div className='app-wrapper'>
       <main>
         <Outlet />
       </main>

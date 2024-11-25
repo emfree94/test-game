@@ -1,8 +1,8 @@
-import { Title } from '@components/title/Title'
-import '@pages/friends/friendsPage.scss'
-import { Friend } from '@components/friend/Friend'
 import { useState } from 'react'
-import { ContentMessage } from '@components/ContentMessage/ContentMessage'
+import { Title } from '@components/title/Title'
+import { Friend } from '@components/friend/Friend'
+import { ContentMessage } from '@components/contentMessage/ContentMessage'
+import '@pages/friends/friendsPage.scss'
 
 export interface User {
   id: string | number
@@ -11,6 +11,7 @@ export interface User {
   userImg?: string
   userCountryFlag?: string
   isActive?: boolean
+  variant?: string
 }
 const users: User[] = [
   {
@@ -111,15 +112,13 @@ export const FriendsRequestsPage = () => {
       {hasUsers && hasNonRequestUsers ? (
         usersData
           .filter((user) => user.friendRequest)
-          .sort((a, b) => Number(b.isActive) - Number(a.isActive))
-          .map(({ friendRequest, userName, userCountryFlag, isActive, id }) => (
+          .map(({ friendRequest, userName, userCountryFlag, id }) => (
             <Friend
               key={id}
               id={id}
               friendRequest={friendRequest}
               userName={userName}
               userCountry={userCountryFlag}
-              isActive={isActive}
               setUsersData={setUsersData}
             />
           ))
@@ -127,7 +126,7 @@ export const FriendsRequestsPage = () => {
         <ContentMessage
           text="У тебе ще немає друзів"
           buttonText="Добавити друзів"
-          variant='fail'
+          variant="fail"
         />
       )}
     </div>

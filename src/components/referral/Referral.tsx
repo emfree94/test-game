@@ -1,9 +1,9 @@
+import { FC } from 'react'
+import { ReferralProps } from '@pages/referrals/ReferralsPage'
 import silverCoinIcon from '@assets/icon/silver-coins.svg'
 import goldenCoinIcon from '@assets/icon/golden-coins.svg'
 import defaultUserLogo from '@assets/icon/avatar2.svg'
 import rankIcon from '@assets/icon/rewarded_ads.svg'
-import { ReferralProps } from '@pages/referrals/ReferralsPage'
-import { FC } from 'react'
 import './referral.scss'
 
 export const Referral: FC<ReferralProps> = ({
@@ -18,7 +18,7 @@ export const Referral: FC<ReferralProps> = ({
   rating,
 }) => {
   return (
-    <div className="referral-block" key={nickname}>
+    <div className={`referral-block ${type}`} key={nickname}>
       <div className="referral-block-left">
         <div className="wrapper-img">
           <img

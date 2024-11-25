@@ -1,5 +1,5 @@
 import React, { FC, useEffect, useState } from 'react'
-import Select, { components } from 'react-select'
+import Select, { ActionMeta, components, MultiValue, SingleValue } from 'react-select'
 import globe from '@assets/icon/globe_asia.svg'
 import checkmarkIcon from '@assets/icon/check_circle_success.svg'
 import searchIcon from '@assets/icon/search.svg'
@@ -25,9 +25,7 @@ const fetchCountryOptions = async (): Promise<CountryOption[]> => {
       label: country.name.common,
       flag: country.flags.svg,
     }))
-    .sort((a: CountryOption, b: CountryOption) =>
-      a.label.localeCompare(b.label)
-    )
+    .sort((a: CountryOption, b: CountryOption) => a.label.localeCompare(b.label))
 
   return sortedCountries
 }
@@ -105,20 +103,21 @@ export const CountryAccordion: FC<Accordion> = ({ isMultiOption }) => {
     loadCountries()
   }, [])
 
+  const handleChange = (
+    selectedOptions: MultiValue<CountryOption> | SingleValue<CountryOption>,
+    actionMeta: ActionMeta<CountryOption>
+  ) => {
+    if (isMultiOption) {
+      if (Array.isArray(selectedOptions) && selectedOptions.length <= 3) {
+        setSelectedCountries(selectedOptions as CountryOption[])
+      }
+    } else {
+      setSelectedCountries(selectedOptions as CountryOption | null)
+    }
   
-
-  // const handleChange = (selectedOptions: CountryOption[] | null) => {
-  //   if (isMultiOption) {
-  //     if (selectedOptions && selectedOptions.length <= 3) {
-  //       setSelectedCountries(selectedOptions)
-  //     }
-  //   } else {
-  //     setSelectedCountries(selectedOptions)
-  //   }
-
-  //   console.log('Selected countries:', selectedOptions)
-  // }
-
+    console.log('Selected countries:', selectedOptions)
+  }
+  
   return (
     <div className="accordion">
       <div className="tab">
@@ -154,7 +153,7 @@ export const CountryAccordion: FC<Accordion> = ({ isMultiOption }) => {
             className="react-select-container"
             classNamePrefix="react-select"
             value={selectedCountries}
-            // onChange={handleChange}
+            onChange={handleChange}
             options={countryOptions}
             placeholder="Пошук"
             isMulti={isMultiOption}

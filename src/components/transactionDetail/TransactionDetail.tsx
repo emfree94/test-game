@@ -1,14 +1,14 @@
 import { FC } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
+import { formatAmount } from '@utils/utils'
 import { Title } from '@components/title/Title'
 import { TransactionProps } from '@components/transaction/Transaction'
+import { ButtonArrow } from '@components/buttons/buttonArrow/ButtonArrow'
 import goldenCoin from '@assets/icon/golden_coins2.svg'
 import silverCoin from '@assets/icon/silver_coins.svg'
-import { formatAmount } from '@utils/utils'
 import './transactionDetail.scss'
-import { ButtonArrow } from '@components/buttons/buttonArrow/ButtonArrow'
 
-export const TransactionDetail: FC = () => {
+export const TransactionDetailPage: FC = () => {
   const { state } = useLocation() as { state: TransactionProps }
 
   const { date, transactionText, variant, price, status, infoReplenishment } =

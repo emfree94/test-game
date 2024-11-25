@@ -7,8 +7,24 @@
   height: 38px;
   border-radius: var(--brRadius);
   margin-bottom: 16px;
+  padding: 9px 12px;
 
   .title {
-    margin: 0 0 0 6px;
+    margin-left: 6px;
+  }
+
+  &--wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    cursor: pointer;
+    
+    img {
+      margin-left: 6px;
+    }
+  }
+
+  &.space-between {
+    justify-content: space-between;
   }
 }

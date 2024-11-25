@@ -1,4 +1,5 @@
 import { FC } from 'react'
+import './title.scss'
 
 interface titleProps {
   text: string

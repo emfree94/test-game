@@ -1,12 +1,12 @@
+import { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
+import { sortByDate } from '@utils/utils'
 import { Button } from '@components/buttons/button/Button'
 import { Referral } from '@components/referral/Referral'
 import { ReferralProps } from '@pages/referrals/ReferralsPage'
-import { useState } from 'react'
-import './activeGamesPage.scss'
-import { sortByDate } from '@utils/utils'
-import { useNavigate } from 'react-router-dom'
+import { ContentMessage } from '@components/contentMessage/ContentMessage'
 import filterIcon from '@assets/icon/tune.svg'
-import { ContentMessage } from '@components/ContentMessage/ContentMessage'
+import './activeGamesPage.scss'
 
 const games: ReferralProps[] = [
   {
@@ -207,8 +207,11 @@ export const ActiveGamesPage = () => {
   })
 
   const handleNavigate = () => {
-    activeComponent &&
-      navigate(`/profile/active-games/filter-${activeComponent}`)
+    activeComponent && navigate(`/active-games/filter-${activeComponent}`)
+  }
+
+  const toggleComponent = (type: string) => {
+    setActiveComponent((prev) => (prev === type ? '' : type))
   }
 
   return (
@@ -218,14 +221,24 @@ export const ActiveGamesPage = () => {
           <Button
             text="Silver"
             size="medium"
+            fontSize={
+              activeComponent === 'silver'
+                ? 'text-bold'
+                : 'text-semi-bold additional-button-color '
+            }
             colorVariant={activeComponent === 'silver' ? 'yellow' : 'light'}
-            onClick={() => setActiveComponent('silver')}
+            onClick={() => toggleComponent('silver')}
           />
           <Button
             text="Golden"
             size="medium"
+            fontSize={
+              activeComponent === 'gold'
+                ? 'text-bold'
+                : 'text-semi-bold additional-button-color'
+            }
             colorVariant={activeComponent === 'gold' ? 'yellow' : 'light'}
-            onClick={() => setActiveComponent('gold')}
+            onClick={() => toggleComponent('gold')}
           />
         </div>
         <Button

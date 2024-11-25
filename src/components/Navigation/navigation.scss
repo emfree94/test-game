@@ -1,11 +1,5 @@
 .navigation-wrapper {
-  padding: 0 20px;
   width: 100%;
-  position: fixed;
-  bottom: 16px;
-  left: 50%;
-  transform: translateX(-50%);
-  z-index: 110;
 
   .navigation {
     width: 100%;
@@ -21,7 +15,7 @@
 
       li a {
         color: var(--neutralInactive);
-        transition: color 0.3s ease; /* Transition for color property */
+        transition: color 0.3s ease; 
 
         &.active {
           color: var(--neutralDark);

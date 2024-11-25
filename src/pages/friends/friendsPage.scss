@@ -1,4 +1,12 @@
 .friends {
-  min-height: 100dvh;
-  position: relative;
+  &--wrapper {
+    margin-bottom: 20px;
+
+    &__block {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 12px;
+    }
+  }
 }

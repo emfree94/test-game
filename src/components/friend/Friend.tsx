@@ -1,16 +1,14 @@
 import { FC, useState } from 'react'
 import Modal from 'react-modal'
-import { User } from '@pages/friends/FriendsPage'
+import { Button } from '@components/buttons/button/Button'
+import { Title } from '@components/title/Title'
+import { User } from '@pages/friendsRequests/FriendsRequestsPage'
 import defaultUserLogo from '@assets/icon/avatar2.svg'
 import deleteIcon from '@assets/icon/delete.svg'
 import addUserIcon from '@assets/icon/group_add.svg'
 import timeIcon from '@assets/icon/history.svg'
 import defaultFlag from '@assets/icon/ukraine.svg'
 import './friend.scss'
-import { Button } from '@components/buttons/button/Button'
-import { Title } from '@components/title/Title'
-
-declare module 'react-modal'
 
 interface FriendProps {
   id: string | number
@@ -23,6 +21,7 @@ interface FriendProps {
   setUsersData: React.Dispatch<React.SetStateAction<User[]>>
 }
 
+
 export const Friend: FC<FriendProps> = ({
   friendRequest = true,
   userImg,
@@ -31,13 +30,18 @@ export const Friend: FC<FriendProps> = ({
   isActive,
   setUsersData,
   id,
-  modalText = 'Видалити цього гравця з друзів?'
 }) => {
   const [modalIsOpen, setIsOpen] = useState<boolean>(false)
-  const [initialModalText, setInitialModalText] = useState<string>(modalText)
+
+  const modalTitle = friendRequest
+    ? `Прийняти ${userName} користувача в друзі?`
+    : `Видалити ${userName} з друзів`
+
+  const [initialModalText, setInitialModalText] = useState<string>(modalTitle)
+
 
   const openModal = () => {
-    friendRequest && setInitialModalText('Прийняти цього користувача в друзі?')
+    setInitialModalText(modalTitle)
     setIsOpen(true)
   }
 
@@ -52,13 +56,13 @@ export const Friend: FC<FriendProps> = ({
 
   return (
     <div className='friend-block'>
-      <Modal  isOpen={modalIsOpen} onRequestClose={closeModal}  ariaHideApp={false} >
+      <Modal isOpen={modalIsOpen} onRequestClose={closeModal}  ariaHideApp={false} >
         <Title
-          className="text-semi-bold"
+          className="text-semi-bold center"
           text={initialModalText}
         />
         <div className="modal-wrapper-button">
-          <Button width="73px" text="Скасувати" colorVariant="transparent" onClick={closeModal} />
+          <Button width="73px" text="Скасувати" colorVariant="transparent" fontSize='text-regular' onClick={closeModal} />
           <Button width="120px" text="Підтвердити" colorVariant="yellow"  onClick={() => { removeUser(id) }} />
         </div>
       </Modal>

@@ -4,12 +4,12 @@ import { Button } from '@components/buttons/button/Button'
 import { Input } from '@components/inputs/input/Input'
 import { Title } from '@components/title/Title'
 import { zodResolver } from '@hookform/resolvers/zod'
-import { FC, useState } from 'react'
+import { FC } from 'react'
 import { useNavigate } from 'react-router-dom'
 import './changeNicknamePage.scss'
-import { useUpdateAccountNameMutation } from 'features/api/putSlice'
 import { useDispatch } from 'react-redux'
 import { userData } from 'features/response/responseSlice'
+import { useUpdateAccountNameMutation } from 'features/api/putSlice'
 
 const schema = z.object({
   name: z

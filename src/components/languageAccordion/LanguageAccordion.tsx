@@ -31,6 +31,7 @@ const languageOptions: LanguageOption[] = [
 
 const customOption = (props: any) => {
   const { innerRef, innerProps, data, isSelected } = props
+  
   return (
     <div ref={innerRef} {...innerProps} className={`custom-option ${isSelected && 'selected'}`}>
       <img src={data.flag} alt={data.label} className="flag-image" />

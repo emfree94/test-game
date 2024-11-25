@@ -1,10 +1,10 @@
 import { ProfileHeader } from '@components/profile/profileHeader/ProfileHeader'
 import { UserBalance } from '@components/userBalance/UserBalance'
+import { ContentMessage } from '@components/contentMessage/ContentMessage'
 import goldenCoin from '@assets/icon/golden_coins3.svg'
 import silverCoin from '@assets/icon/silver_coins2.svg'
 import groupIcon from '@assets/icon/group.svg'
 import './statisticPlayerPage.scss'
-import { ContentMessage } from '@components/ContentMessage/ContentMessage'
 
 interface GameInfo {
   id: number

@@ -24,6 +24,7 @@
   --brRadius: 7px;
   --brRadiusSecondary: 8px;
   --brRadiusThird: 12px;
+  color-scheme: none !important;
 }
 
 .title-bold {
@@ -103,20 +104,49 @@
   color: var(--brightRedSecondary);
 }
 
+.user-wallet-id {
+  width: 15ch;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: inline-block;
+  color: var(--neutralAdditional);
+}
+
+.additional-button-color {
+  color: var(--neutralAdditional);
+}
+
 *,
 *::before,
 *::after {
   box-sizing: border-box;
 }
 
+.app-wrapper {
+  display: flex;
+  flex-direction: column;
+  padding: 16px 20px;
+  justify-content: space-between;
+  height: 100dvh;
+}
+
+main {
+  height: calc(100dvh - 100px);
+  overflow: auto;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
 body {
-  font-family: 'Inter', sans-serif;
+  font-family: 'Inter', sans-serif !important;
+  color: var(--neutralDark) !important;
   font-optical-sizing: auto;
   font-style: normal;
   background: var(--bgGradient);
-  padding: 16px 20px !important;
   min-height: 100dvh;
-  color: var(--neutralDark) !important;
 }
 
 html,
@@ -255,4 +285,10 @@ input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
   -webkit-appearance: none;
   margin: 0;
+}
+
+input::placeholder {
+  color: var(--neutralDark) !important;
+  font-size: 14px;
+  line-height: 17px;
 }

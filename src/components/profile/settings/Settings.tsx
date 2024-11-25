@@ -10,8 +10,11 @@ export const Settings = () => {
       <div>
         <CountryAccordion />
         <LanguageAccordion />
+        <Title text='Сповіщення' />
         <ActionBlock title='Звук' />
         <ActionBlock title='Вібрація' />
+        <Title text='Зміна паролю' />
+        <ActionBlock title='Пароль' isPassword />
       </div>
     </div>
   )

@@ -1,11 +1,11 @@
+import { FC } from 'react'
+import { useNavigate } from 'react-router-dom'
 import { useForm } from 'react-hook-form'
+import { zodResolver } from '@hookform/resolvers/zod'
 import { z } from 'zod'
 import { Button } from '@components/buttons/button/Button'
 import { Input } from '@components/inputs/input/Input'
 import { Title } from '@components/title/Title'
-import { zodResolver } from '@hookform/resolvers/zod'
-import { FC } from 'react'
-import { useNavigate } from 'react-router-dom'
 
 const schema = z
   .object({

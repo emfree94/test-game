@@ -1,0 +1,80 @@
+.exchange-coin {
+  &--coins {
+    display: flex;
+    margin-bottom: 20px;
+  }
+  
+  &--form-block {
+    .form-wrapper {
+      &__buttons {
+        display: flex;
+        gap: 10px;
+        margin-bottom: 20px;
+      }
+
+      &__inputs_button {
+        display: flex;
+        align-items: center;
+        width: 100%;
+        gap: 6px;
+        margin-bottom: 16px;
+
+        img {
+          cursor: pointer;
+        }
+
+        .input-block {
+          width: 100%;
+        }
+      }
+
+      &__coin_block {
+        margin-bottom: 20px;
+
+        .coin-container {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          background-color: var(--neutralSilver);
+          padding: 7px 12px;
+          border-radius: var(--brRadius);
+
+          .coin-price {
+            color: var(--brightGreenSecondary);
+          }
+
+          &__wrapper {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            &--value {
+              display: flex;
+              justify-content: center;
+              align-items: center;
+
+              img {
+                margin-left: 4px;
+              }
+            }
+
+            &--block {
+              margin-left: 8px;
+
+              &__head {
+                display: flex;
+                justify-content: flex-start;
+                align-items: center;
+                margin-bottom: 4px;
+
+                img {
+                  margin-right: 4px;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

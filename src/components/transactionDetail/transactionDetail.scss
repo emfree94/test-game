@@ -37,12 +37,15 @@
       background-color: var(--primaryGolden);
       justify-content: center;
       margin-bottom: 20px;
+      border-radius: var(--brRadius);
 
       &.silver {
         background-color: var(--neutralSilver);
       }
 
       .price {
+        margin-top: 4px;
+        
         &.positive {
           color: var(--brightGreenSecondary);
         }

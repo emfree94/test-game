@@ -1,0 +1,55 @@
+.refill-account {
+  &--head {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    margin-bottom: 20px;
+
+    button {
+      margin-right: 8px;
+    }
+  }
+
+  &--qr-block {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+
+    .qr-image {
+      width: 128px;
+      height: 128px;
+    }
+  }
+
+  &--info-transaction {
+    .refill-account-transaction {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 12px;
+      background-color: var(--neutralSilver);
+      border-radius: var(--brRadiusSecondary);
+      margin-bottom: 10px;
+
+      &:last-child {
+        margin-bottom: 20px;
+      }
+
+      .transaction-wrapper {
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+
+        .user-wallet-id {
+          color: var(--neutralAdditional);
+        }
+
+        img {
+          margin-left: 6px;
+          cursor: pointer;
+        }
+      }
+    }
+  }
+}

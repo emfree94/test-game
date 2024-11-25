@@ -1,0 +1,39 @@
+.status-block {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 3px 15px;
+  border-radius: 5px;
+
+  &.Progress {
+    background-color: var(--surfacesYellow);
+
+    .status-text {
+      color: var(--brightBrown);
+    }
+  }
+
+  &.New {
+    background-color: var(--surfacesBlue);
+
+    .status-text {
+      color: var(--brightBlue);
+    }
+  }
+
+  &.Failed {
+    background-color: var(--surfacesRed);
+
+    .status-text {
+      color: var(--brightRed);
+    }
+  }
+
+  &.Completed {
+    background-color: var(--surfacesGreen);
+
+    .status-text {
+      color: var(--brightGreen);
+    }
+  }
+}

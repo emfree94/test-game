@@ -1,9 +1,10 @@
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { z } from 'zod'
-import './verification.scss'
 import { Input } from '@components/inputs/input/Input'
 import { Title } from '@components/title/Title'
+import { InputPhone } from '@components/inputs/InputPhone/InputPhone'
+import './verification.scss'
 
 const schema = z.object({
   email: z.string().email('Invalid email address'),
@@ -42,7 +43,7 @@ export const Verification = () => {
           placeholder="Введіть email"
           isValid={isValid}
         />
-        <Input
+        <InputPhone
           {...register('phone')}
           errorMessage={errors.phone?.message}
           type="tel"

@@ -1,9 +1,8 @@
+import { useState } from 'react'
 import Select, { components } from 'react-select'
 import bitcoinIcon from '@assets/icon/currency_bitcoin.svg'
 import searchIcon from '@assets/icon/search.svg'
 import shibaIcon from '@assets/icon/shiba_inu.svg'
-import { useState } from 'react'
-
 
 interface coinOption {
   coinImg: string
@@ -69,9 +68,7 @@ const customInput = (props: any) => {
 }
 
 export const DepositAccordion = () => {
-  const [selectedOption, setSelectedOption] = useState<coinOption | null>(
-    null
-  )
+  const [selectedOption, setSelectedOption] = useState<coinOption | null>(null)
 
   const handleChange = (selectedOption: coinOption | null) => {
     setSelectedOption(selectedOption)
@@ -87,11 +84,14 @@ export const DepositAccordion = () => {
           <span className="label-text">
             Монети
             {selectedOption && (
-              <img
-                src={selectedOption.coinImg}
-                alt={selectedOption.label}
-                className="selected-flag"
-              />
+              <>
+                <img
+                  src={selectedOption.coinImg}
+                  alt={selectedOption.label}
+                  className="selected-flag"
+                />
+                <p className='coin-value text-regular'>{selectedOption.value}</p>
+              </>
             )}
           </span>
         </label>

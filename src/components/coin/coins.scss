@@ -7,6 +7,10 @@
   background-color: var(--primaryGolden);
   border-radius: var(--brRadiusThird);
 
+  &.hide-icon {
+    justify-content: center;
+  }
+
   &:first-child {
     margin-right: 16px;
   }
@@ -29,6 +33,8 @@
   .quantity-coin-wrapper {
     display: flex;
     align-items: center;
+    width: 100%;
+    justify-content: center;
 
     .quantity {
       margin-left: 2px;

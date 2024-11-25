@@ -1,24 +1,18 @@
-import { Title } from '@components/title/Title'
-import './friendsPage.scss'
-import { Friend } from '@components/friend/Friend'
 import { useState } from 'react'
-import { ContentMessage } from '@components/ContentMessage/ContentMessage'
+import { useNavigate } from 'react-router-dom'
+import { Title } from '@components/title/Title'
+import { Friend } from '@components/friend/Friend'
+import { ContentMessage } from '@components/contentMessage/ContentMessage'
+import { ButtonArrow } from '@components/buttons/buttonArrow/ButtonArrow'
+import { User } from '@pages/friendsRequests/FriendsRequestsPage'
+import './friendsPage.scss'
 
-export interface User {
-  id: string | number
-  friendRequest?: boolean
-  userName: string
-  userImg?: string
-  type?: 'silver' | 'yellow'
-  userCountryFlag?: string
-  isActive?: boolean
-}
 const users: User[] = [
   {
     id: 1,
     friendRequest: true,
     userName: 'Alice',
-    type: 'silver',
+    variant: 'silver',
     userCountryFlag: 'https://flagcdn.com/us.svg',
     isActive: true,
   },
@@ -26,7 +20,7 @@ const users: User[] = [
     id: 2,
     friendRequest: false,
     userName: 'Bob',
-    type: 'yellow',
+    variant: 'yellow',
     userCountryFlag: 'https://flagcdn.com/fr.svg',
     isActive: true,
   },
@@ -34,7 +28,7 @@ const users: User[] = [
     id: 3,
     friendRequest: true,
     userName: 'Carlos',
-    type: 'silver',
+    variant: 'silver',
     userCountryFlag: 'https://flagcdn.com/br.svg',
     isActive: false,
   },
@@ -42,7 +36,7 @@ const users: User[] = [
     id: 4,
     friendRequest: false,
     userName: 'Diana',
-    type: 'yellow',
+    variant: 'yellow',
     userCountryFlag: 'https://flagcdn.com/ua.svg',
     isActive: true,
   },
@@ -50,7 +44,7 @@ const users: User[] = [
     id: 5,
     friendRequest: true,
     userName: 'Elena',
-    type: 'silver',
+    variant: 'silver',
     userCountryFlag: 'https://flagcdn.com/de.svg',
     isActive: true,
   },
@@ -58,7 +52,7 @@ const users: User[] = [
     id: 6,
     friendRequest: false,
     userName: 'Felix',
-    type: 'silver',
+    variant: 'silver',
     userCountryFlag: 'https://flagcdn.com/pl.svg',
     isActive: false,
   },
@@ -66,7 +60,7 @@ const users: User[] = [
     id: 7,
     friendRequest: true,
     userName: 'Gabriel',
-    type: 'silver',
+    variant: 'silver',
     userCountryFlag: 'https://flagcdn.com/ru.svg',
     isActive: true,
   },
@@ -74,7 +68,7 @@ const users: User[] = [
     id: 8,
     friendRequest: false,
     userName: 'Hanna',
-    type: 'yellow',
+    variant: 'yellow',
     userCountryFlag: 'https://flagcdn.com/es.svg',
     isActive: true,
   },
@@ -82,7 +76,7 @@ const users: User[] = [
     id: 9,
     friendRequest: true,
     userName: 'Ivan',
-    type: 'silver',
+    variant: 'silver',
     userCountryFlag: 'https://flagcdn.com/it.svg',
     isActive: false,
   },
@@ -90,7 +84,7 @@ const users: User[] = [
     id: 10,
     friendRequest: false,
     userName: 'Julia',
-    type: 'yellow',
+    variant: 'yellow',
     userCountryFlag: 'https://flagcdn.com/jp.svg',
     isActive: true,
   },
@@ -98,7 +92,7 @@ const users: User[] = [
     id: 11,
     friendRequest: true,
     userName: 'Ken',
-    type: 'silver',
+    variant: 'silver',
     userCountryFlag: 'https://flagcdn.com/ca.svg',
     isActive: true,
   },
@@ -106,7 +100,7 @@ const users: User[] = [
     id: 12,
     friendRequest: false,
     userName: 'Lily',
-    type: 'yellow',
+    variant: 'yellow',
     userCountryFlag: 'https://flagcdn.com/gb.svg',
     isActive: false,
   },
@@ -115,35 +109,66 @@ const users: User[] = [
 export const FriendsPage = () => {
   const [usersData, setUsersData] = useState<User[]>(users)
 
-  const hasUsers = usersData.length > 0
-  const hasNonRequestUsers = usersData.some(
-    (user) => user.friendRequest === false
-  )
+  const navigate = useNavigate()
+
+  const getFriendRequests = () => usersData.filter((user) => user.friendRequest)
+
+  const getActiveFriends = () => usersData.filter((user) => !user.friendRequest)
 
   return (
     <div className="friends">
-      <Title text="Друзі" />
-      {hasUsers && hasNonRequestUsers ? (
-        usersData
-          .filter((user) => !user.friendRequest)
-          .sort((a, b) => Number(b.isActive) - Number(a.isActive))
-          .map(({ friendRequest, userName, userCountryFlag, isActive, id }) => (
-            <Friend
-              key={id}
-              id={id}
-              friendRequest={friendRequest}
-              userName={userName}
-              userCountry={userCountryFlag}
-              isActive={isActive}
-              setUsersData={setUsersData}
-            />
-          ))
-      ) : (
+      {usersData.length === 0 ? (
         <ContentMessage
           text="У тебе ще немає друзів"
           buttonText="Добавити друзів"
-          variant='fail'
+          variant="fail"
         />
+      ) : (
+        <>
+          <div className="friends--wrapper">
+            <div className="friends--wrapper__block">
+              <Title text="Заявки у друзі" marginBottom="0" />
+              <ButtonArrow onClick={() => navigate('requests')} />
+            </div>
+            {!!usersData.length &&
+              getFriendRequests().map(
+                ({ friendRequest, userName, userCountryFlag, id }) => (
+                  <Friend
+                    key={id}
+                    id={id}
+                    friendRequest={friendRequest}
+                    userName={userName}
+                    userCountry={userCountryFlag}
+                    setUsersData={setUsersData}
+                  />
+                )
+              )}
+          </div>
+
+          <div className="friends--wrapper">
+            <Title text="Друзі" />
+            {!!usersData.length &&
+              getActiveFriends().map(
+                ({
+                  friendRequest,
+                  userName,
+                  userCountryFlag,
+                  isActive,
+                  id,
+                }) => (
+                  <Friend
+                    key={id}
+                    id={id}
+                    friendRequest={friendRequest}
+                    userName={userName}
+                    userCountry={userCountryFlag}
+                    isActive={isActive}
+                    setUsersData={setUsersData}
+                  />
+                )
+              )}
+          </div>
+        </>
       )}
     </div>
   )

@@ -1,9 +1,8 @@
 import { Title } from '@components/title/Title'
-import { ContentMessage } from '@components/ContentMessage/ContentMessage'
+import { ContentMessage } from '@components/contentMessage/ContentMessage'
 import { ReferralLink } from '@components/referralLink/ReferralLink'
 import { Referral } from '@components/referral/Referral'
 import './referralsPage.scss'
-
 
 export interface ReferralProps {
   userLogoUrl: string
@@ -14,7 +13,7 @@ export interface ReferralProps {
   rating?: string | number
   isGames?: boolean
   type?: 'silver' | 'gold'
-  coinValue?:  number
+  coinValue?: number
   date?: string
 }
 
@@ -170,17 +169,20 @@ export const ReferralsPage = () => {
               text="У тебе ще немає рефералів"
               description="Поділись запрошенням зі своїми друзями"
             >
-              <ReferralLink isMargin />
+              <ReferralLink />
             </ContentMessage>
           ) : (
             referrals?.map(
-              ({
-                userLogoUrl,
-                userCountryFlag,
-                nickname,
-                silverCoin,
-                goldCoin,
-              }, index) => (
+              (
+                {
+                  userLogoUrl,
+                  userCountryFlag,
+                  nickname,
+                  silverCoin,
+                  goldCoin,
+                },
+                index
+              ) => (
                 <Referral
                   key={index}
                   userLogoUrl={userLogoUrl}

@@ -2,8 +2,8 @@ import { ProfileHeader } from '@components/profile/profileHeader/ProfileHeader'
 import { UserProfile } from '@components/profile/profileUser/ProfileUser'
 import { Settings } from '@components/profile/settings/Settings'
 import { Verification } from '@components/profile/verification/Verification'
-import './profileSettingsPage.scss'
 import { UserBalance } from '@components/userBalance/UserBalance'
+import './profileSettingsPage.scss'
 
 
 export const ProfileSettingsPage = () => {

@@ -1,0 +1,63 @@
+.player {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 9px 12px;
+  background-color: var(--neutralSilver);
+  border-radius: var(--brRadius);
+  margin-bottom: 10px;
+
+  &.gold {
+    background-color: var(--primaryGolden);
+  }
+
+  &--block {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+
+    &__avatar {
+      width: 40px;
+      height: 40px;
+      border-radius: 100%;
+      margin-right: 7px;
+      position: relative;
+
+      &--flag {
+        position: absolute;
+        width: 16px;
+        height: 10px;
+        bottom: 3px;
+        right: 0;
+      }
+
+      &--avatar {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+    }
+
+    &__description {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: flex-start;
+
+      .coin-value {
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        margin-top: 4px;
+
+        img {
+          margin-left: 2px;
+        }
+      }
+    }
+  }
+
+  &--rating {
+    color: var(--neutralDark);
+  }
+}

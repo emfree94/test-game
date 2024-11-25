@@ -1,7 +1,7 @@
 import { Title } from '@components/title/Title'
-import { ContentMessage } from '@components/contentMessage/ContentMessage'
 import { ReferralLink } from '@components/referralLink/ReferralLink'
 import { Referral } from '@components/referral/Referral'
+import ContentMessage from '@components/contentMessage/ContentMessage'
 import './referralsPage.scss'
 
 export interface ReferralProps {

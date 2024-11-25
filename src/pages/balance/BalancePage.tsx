@@ -8,7 +8,7 @@ import {
   TransactionProps,
 } from '@components/transaction/Transaction'
 import { Coins } from '@components/coin/Coins'
-import { ContentMessage } from '@components/contentMessage/ContentMessage'
+import ContentMessage from '@components/contentMessage/ContentMessage'
 import './balancePage.scss'
 
 const transactions: TransactionProps[] = [

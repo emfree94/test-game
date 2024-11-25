@@ -2,9 +2,9 @@ import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { Title } from '@components/title/Title'
 import { Friend } from '@components/friend/Friend'
-import { ContentMessage } from '@components/contentMessage/ContentMessage'
 import { ButtonArrow } from '@components/buttons/buttonArrow/ButtonArrow'
 import { User } from '@pages/friendsRequests/FriendsRequestsPage'
+import ContentMessage from '@components/contentMessage/ContentMessage'
 import './friendsPage.scss'
 
 const users: User[] = [

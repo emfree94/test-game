@@ -4,7 +4,7 @@ import { sortByDate } from '@utils/utils'
 import { Button } from '@components/buttons/button/Button'
 import { Referral } from '@components/referral/Referral'
 import { ReferralProps } from '@pages/referrals/ReferralsPage'
-import { ContentMessage } from '@components/contentMessage/ContentMessage'
+import ContentMessage from '@components/contentMessage/ContentMessage'
 import filterIcon from '@assets/icon/tune.svg'
 import './activeGamesPage.scss'
 

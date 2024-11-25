@@ -5,9 +5,9 @@ import { Button } from '@components/buttons/button/Button'
 import { ButtonArrow } from '@components/buttons/buttonArrow/ButtonArrow'
 import { Title } from '@components/title/Title'
 import { StatusBlock } from '@components/statusBlock/StatusBlock'
-import { ContentMessage } from '@components/contentMessage/ContentMessage'
 import goldenCoin from '@assets/icon/golden_coins2.svg'
 import goldenCoinSmall from '@assets/icon/golden-coins.svg'
+import ContentMessage from '@components/contentMessage/ContentMessage'
 import './payoutDetailPage.scss'
 
 type PayoutDetail = {

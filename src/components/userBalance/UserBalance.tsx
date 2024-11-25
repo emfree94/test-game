@@ -6,10 +6,9 @@ import goldenCoin from '@assets/icon/golden_coins2.svg'
 import silverCoin from '@assets/icon/silver_coins.svg'
 import { useSelector } from 'react-redux'
 import { RootState } from '@store/store'
+import './userBalance.scss'
 
-
-export const UserBalance: FC = ({
-}) => {
+export const UserBalance: FC = ({}) => {
   const navigate = useNavigate()
   const balanceData = useSelector((state: RootState) => state.balances.balances)
 

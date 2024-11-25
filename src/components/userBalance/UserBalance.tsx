@@ -1,11 +1,13 @@
-import { FC } from 'react'
+import { FC, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { formatAmount } from '@utils/utils'
 import addCircleIcon from '@assets/icon/add_circle.svg'
 import goldenCoin from '@assets/icon/golden_coins2.svg'
 import silverCoin from '@assets/icon/silver_coins.svg'
-import './userBalance.scss'
 import { useGetAccountBalanceQuery } from '@features/api/putSlice'
+import { setBalances } from '@features/response/balanceSlice'
+import { useDispatch } from 'react-redux'
+import './userBalance.scss'
 
 interface UserBalanceProps {
   silverBalance: string | number
@@ -18,29 +20,34 @@ export const UserBalance: FC<UserBalanceProps> = ({
 }) => {
   const navigate = useNavigate()
   const { data, error, isLoading } = useGetAccountBalanceQuery({})
+  const dispatch = useDispatch()
+
+  useEffect(() => {
+    if (data) {
+      dispatch(setBalances(data?.data.balances))
+    }
+  }, [data, dispatch])
 
   const silverCoinBalance = data?.data?.balances?.['silver-coins']?.balance;
+  const goldCoinBalance = data?.data?.balances?.['golden-coins']?.balance;
 
   return (
     <>
-      <div>Data - {JSON.stringify(data?.balance)}</div>
       <div className="user-balance">
-        <div>coin - {silverCoinBalance}</div>
-
         <div className="coins" onClick={() => navigate('/transfer-costs')}>
           <img src={goldenCoin} alt="golden-coin" />
           <p className="coin-balance text-semi-bold">
-            {formatAmount(goldBalance)}
+            {formatAmount(goldCoinBalance)}
           </p>
           <img className="add-coin" src={addCircleIcon} alt="golden-coin" />
         </div>
 
         <div className="coins" onClick={() => navigate('/exchange-coin')}>
-          <img src={silverCoin} alt="golden-coin" />
+          <img src={silverCoin} alt="silver-coin" />
           <p className="coin-balance text-semi-bold">
-            {formatAmount(silverBalance)}
+            {formatAmount(silverCoinBalance)}
           </p>
-          <img className="add-coin" src={addCircleIcon} alt="golden-coin" />
+          <img className="add-coin" src={addCircleIcon} alt="silver-coin" />
         </div>
       </div>
     </>

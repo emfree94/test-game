@@ -1,4 +1,3 @@
-// src/App.tsx
 import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { usePostTelegramDataMutation } from './features/api/apiSlice'
@@ -6,7 +5,6 @@ import { userData } from 'features/response/responseSlice'
 import { Outlet } from 'react-router-dom'
 import { Navigation } from '@components/Navigation/Navigation'
 import { useUpdateAccountNameMutation } from 'features/api/putSlice'
-import { any } from 'zod'
 
 declare global {
   interface Window {
@@ -31,15 +29,8 @@ export const App = () => {
       const initData = tg.initData
       setRawInitData(initData)
 
-      postTelegramData(initData)
-        .unwrap()
-        .then((response) => {
-          console.log('Response from API:', response)
-          dispatch(userData(response.data))
-        })
-        .catch((error) => {
-          console.error('Error during POST request:', error)
-        })
+      postTelegramData(initData).unwrap()
+      dispatch(userData(data.data))
     }
   }, [dispatch, postTelegramData])
 

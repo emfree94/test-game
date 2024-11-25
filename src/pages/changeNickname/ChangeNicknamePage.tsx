@@ -7,9 +7,12 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import { FC } from 'react'
 import { useNavigate } from 'react-router-dom'
 import './changeNicknamePage.scss'
+import { useUpdateAccountNameMutation } from 'features/api/putSlice'
+import { useDispatch } from 'react-redux'
+import { userData } from 'features/response/responseSlice'
 
 const schema = z.object({
-  nickname: z
+  name: z
     .string()
     .min(3, 'Name must be longer than 3 letters')
     .max(32, 'To long name'),
@@ -20,6 +23,23 @@ type FormData = z.infer<typeof schema>
 export const ChangeNicknamePage: FC = () => {
   const navigate = useNavigate()
   const methods = useForm()
+  const [updateAccountName, { isLoading, data, isError }] = useUpdateAccountNameMutation()
+  const dispatch = useDispatch()
+
+  const onSubmit = async (formData: FormData) => {
+    const payload = {
+      name: formData.name, 
+      email: 'ruslan_test_ruslan@rr.rr',
+      phone: '+ (38) 067 123 4567',
+    }
+
+    try {
+     await updateAccountName(payload).unwrap()
+      dispatch(userData(data.data))
+    } catch (error: any) {
+      alert(isError)
+    }
+  }
 
   const handleEditClick = () => {
     navigate(-1)
@@ -32,13 +52,13 @@ export const ChangeNicknamePage: FC = () => {
     formState: { errors, isValid },
   } = useForm<FormData>({
     defaultValues: {
-      nickname: '',
+      name: '',
     },
     resolver: zodResolver(schema),
     mode: 'all',
     reValidateMode: 'onBlur',
   })
-  const valueInput = watch('nickname')
+  const valueInput = watch('name')
   const inputLength = valueInput ? valueInput.length : 0
 
   return (
@@ -46,20 +66,20 @@ export const ChangeNicknamePage: FC = () => {
       <Title text="Зміна нікнейму" marginBottom="14px" />
 
       <div className="form-block">
-        <form action="">
+      <form onSubmit={handleSubmit(onSubmit)}>
           <Input
-            {...register('nickname')}
-            errorMessage={errors.nickname?.message}
+            {...register('name')}
+            errorMessage={errors.name?.message}
             type="text"
             isValid={isValid}
-            placeholder="Nickname"
-            name="nickname"
+            placeholder="name"
+            name="name"
             inputLength={inputLength}
           />
         </form>
       </div>
 
-      <Button colorVariant="yellow" text="Підтвердити" marginBottom="8px" />
+      <Button type='submit' colorVariant="yellow" text="Підтвердити" marginBottom="8px" />
       <Button onClick={handleEditClick} text="Скасувати" />
     </div>
   )

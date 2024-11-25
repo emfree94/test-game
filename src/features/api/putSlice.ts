@@ -6,7 +6,6 @@ export const putSlice = createApi({
   baseQuery: fetchBaseQuery({
     baseUrl: 'https://api.chuvachi.online/api',
     prepareHeaders: (headers) => {
-      // Додаємо токен авторизації, якщо він є в стані (state)
       const token = localStorage.getItem('token')
       if (token) {
         headers.set('Authorization', `Bearer ${token}`)

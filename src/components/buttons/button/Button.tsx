@@ -12,6 +12,7 @@ interface ButtonProps {
   buttonIcon?: string
   disabled?: boolean
   fontSize?: string
+  type?: 'submit' | 'button'
 }
 
 export const Button: React.FC<ButtonProps> = ({
@@ -25,9 +26,11 @@ export const Button: React.FC<ButtonProps> = ({
   buttonIcon,
   size,
   disabled,
+  type = 'button',
 }) => {
   return (
     <button
+      type={type}
       disabled={disabled}
       className={`button-component ${className} ${
         colorVariant && colorVariant

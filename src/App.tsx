@@ -5,7 +5,7 @@ import { usePostTelegramDataMutation } from 'features/api/apiSlice'
 import { useUpdateAccountNameMutation } from 'features/api/putSlice'
 import { useDispatch } from 'react-redux'
 import { userData } from 'features/response/responseSlice'
-import { Navigations } from '@components/navigations/Navigations'
+import { Navigation } from '@components/navigation/Navigation'
 
 declare global {
   interface Window {
@@ -50,7 +50,7 @@ export const App = () => {
     }
 
     try {
-      const data = await updateAccountName(payload).unwrap() // Execute PUT request
+      const data = await updateAccountName(payload).unwrap() 
 
       setResponse(data)
       console.log('Response from PUT request:', response)
@@ -65,7 +65,7 @@ export const App = () => {
       <main>
         <Outlet />
       </main>
-      <Navigations />
+      <Navigation />
     </div>
   )
 }

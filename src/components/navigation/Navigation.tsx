@@ -6,7 +6,7 @@ import {
   ProfileIcon,
   TopPlayersIcon,
 } from 'icons'
-import './navigations.scss'
+import './navigation.scss'
 
 const navigationList = [
   { url: '/', Icon: HomeIcon },
@@ -16,7 +16,7 @@ const navigationList = [
   { url: '/profile', Icon: ProfileIcon },
 ]
 
-export const Navigations = () => {
+export const Navigation = () => {
   return (
     <div className="navigation-wrapper">
       <div className="navigation">

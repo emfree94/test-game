@@ -26,7 +26,6 @@ export const ChangeNicknamePage: FC = () => {
   const [updateAccountName, { isLoading, data, isError }] =
     useUpdateAccountNameMutation()
   const dispatch = useDispatch()
-  const [userDataTest, setUserDataTest] = useState<string>('')
 
   const handleEditClick = () => {
     navigate(-1)
@@ -58,8 +57,8 @@ export const ChangeNicknamePage: FC = () => {
     try {
       // Call the mutation and unwrap the response
       const response = await updateAccountName(payload).unwrap()
-      dispatch(userData(response.data)) // Dispatch userData with the response data
-      navigate('/') // Optionally navigate after success
+      dispatch(userData(response.data))
+      navigate(-1)
     } catch (error: any) {
       console.error('Error during PUT request:', error)
       alert('An error occurred while updating the nickname.')
@@ -68,7 +67,8 @@ export const ChangeNicknamePage: FC = () => {
 
   return (
     <div className="nickname-container">
-      <div className="">{JSON.stringify(userDataTest)}</div>
+      {isError && <div className="">{isError}</div>}
+      {<div className="">{data}</div>}
       <Title text="Зміна нікнейму" marginBottom="14px" />
 
       <div className="form-block">

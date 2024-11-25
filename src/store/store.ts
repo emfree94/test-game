@@ -6,9 +6,9 @@ import { putSlice } from 'features/api/putSlice';
 
 export const store = configureStore({
   reducer: {
-    [apiSlice.reducerPath]: apiSlice.reducer, // Add apiSlice
-    [putSlice.reducerPath]: putSlice.reducer, // Add putSlice
-    userData: responseReducer,               // Your custom response reducer
+    [apiSlice.reducerPath]: apiSlice.reducer, 
+    [putSlice.reducerPath]: putSlice.reducer, 
+    userData: responseReducer,               
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware().concat(apiSlice.middleware).concat(putSlice.middleware),

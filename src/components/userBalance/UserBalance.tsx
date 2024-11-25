@@ -5,6 +5,7 @@ import addCircleIcon from '@assets/icon/add_circle.svg'
 import goldenCoin from '@assets/icon/golden_coins2.svg'
 import silverCoin from '@assets/icon/silver_coins.svg'
 import './userBalance.scss'
+import { useGetAccountBalanceQuery } from '@features/api/putSlice'
 
 interface UserBalanceProps {
   silverBalance: string | number
@@ -16,9 +17,15 @@ export const UserBalance: FC<UserBalanceProps> = ({
   goldBalance,
 }) => {
   const navigate = useNavigate()
+  const { data, error, isLoading } = useGetAccountBalanceQuery({});
+
+  const silverCoinBalance = data?.balances?.['silver-coins']?.balance;
 
   return (
     <div className="user-balance">
+      <div>{silverCoinBalance}</div>
+      <div>{data}</div>
+      
       <div className="coins" onClick={() => navigate('/transfer-costs')}>
         <img src={goldenCoin} alt="golden-coin" />
         <p className="coin-balance text-semi-bold">

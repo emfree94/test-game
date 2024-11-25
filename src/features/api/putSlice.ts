@@ -1,16 +1,16 @@
 // src/api/apiSlice.js
-import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
+import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 
 export const putSlice = createApi({
   reducerPath: 'put',
   baseQuery: fetchBaseQuery({
     baseUrl: 'https://api.chuvachi.online/api',
     prepareHeaders: (headers) => {
-      const token = localStorage.getItem('token')
+      const token = localStorage.getItem('token');
       if (token) {
-        headers.set('Authorization', `Bearer ${token}`)
+        headers.set('Authorization', `Bearer ${token}`);
       }
-      return headers
+      return headers;
     },
   }),
   endpoints: (builder) => ({
@@ -28,7 +28,14 @@ export const putSlice = createApi({
         },
       }),
     }),
+    
+    getAccountBalance: builder.query({
+      query: () => '/account/balance',
+    }),
   }),
-})
+});
 
-export const { useUpdateAccountNameMutation } = putSlice
+export const { 
+  useUpdateAccountNameMutation, 
+  useGetAccountBalanceQuery 
+} = putSlice;

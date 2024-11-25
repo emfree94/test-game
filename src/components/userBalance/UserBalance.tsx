@@ -29,7 +29,7 @@ export const UserBalance: FC<UserBalanceProps> = ({
         <div className="coins" onClick={() => navigate('/transfer-costs')}>
           <img src={goldenCoin} alt="golden-coin" />
           <p className="coin-balance text-semi-bold">
-            {/* {formatAmount(goldCoinBalance)} */}
+            {formatAmount(goldCoinBalance)}
           </p>
           <img className="add-coin" src={addCircleIcon} alt="golden-coin" />
         </div>
@@ -37,7 +37,7 @@ export const UserBalance: FC<UserBalanceProps> = ({
         <div className="coins" onClick={() => navigate('/exchange-coin')}>
           <img src={silverCoin} alt="golden-coin" />
           <p className="coin-balance text-semi-bold">
-            {/* {formatAmount(silverCoinBalance)} */}
+            {formatAmount(silverCoinBalance)}
           </p>
           <img className="add-coin" src={addCircleIcon} alt="golden-coin" />
         </div>

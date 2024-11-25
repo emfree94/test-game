@@ -26,7 +26,8 @@ export const App = () => {
 
       postTelegramData(initData).unwrap()
 
-      dispatch(userData(data))
+      dispatch(userData(data.data))
+      
       if (balanceData) {
         dispatch(setBalances(balanceData?.data?.balances || {}))
       }

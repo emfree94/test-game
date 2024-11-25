@@ -4,7 +4,7 @@ import { Button } from '@components/buttons/button/Button'
 import { Input } from '@components/inputs/input/Input'
 import { Title } from '@components/title/Title'
 import { zodResolver } from '@hookform/resolvers/zod'
-import { FC } from 'react'
+import { FC, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import './changeNicknamePage.scss'
 import { useUpdateAccountNameMutation } from 'features/api/putSlice'
@@ -23,23 +23,10 @@ type FormData = z.infer<typeof schema>
 export const ChangeNicknamePage: FC = () => {
   const navigate = useNavigate()
   const methods = useForm()
-  const [updateAccountName, { isLoading, data, isError }] = useUpdateAccountNameMutation()
+  const [updateAccountName, { isLoading, data, isError }] =
+    useUpdateAccountNameMutation()
   const dispatch = useDispatch()
-
-  const onSubmit = async (formData: FormData) => {
-    const payload = {
-      name: formData.name, 
-      email: 'ruslan_test_ruslan@rr.rr',
-      phone: '+ (38) 067 123 4567',
-    }
-
-    try {
-     await updateAccountName(payload).unwrap()
-      dispatch(userData(data.data))
-    } catch (error: any) {
-      alert(isError)
-    }
-  }
+  const [userDataTest, setUserDataTest] = useState<string>('')
 
   const handleEditClick = () => {
     navigate(-1)
@@ -61,12 +48,31 @@ export const ChangeNicknamePage: FC = () => {
   const valueInput = watch('name')
   const inputLength = valueInput ? valueInput.length : 0
 
+
+  const onSubmit = async (formData: FormData) => {
+    const payload = {
+      name: formData.name, 
+      email: 'ruslan_test_ruslan@rr.rr',
+      phone: '+ (38) 067 123 4567',
+    }
+
+    try {
+      // Call the mutation and unwrap the response
+      const response = await updateAccountName(payload).unwrap()
+      dispatch(userData(response.data)) // Dispatch userData with the response data
+    } catch (error: any) {
+      console.error('Error during PUT request:', error)
+      alert('An error occurred while updating the nickname.')
+    }
+  }
+
   return (
     <div className="nickname-container">
+      <div className="">{JSON.stringify(userDataTest)}</div>
       <Title text="Зміна нікнейму" marginBottom="14px" />
 
       <div className="form-block">
-      <form onSubmit={handleSubmit(onSubmit)}>
+        <form onSubmit={handleSubmit(onSubmit)}>
           <Input
             {...register('name')}
             errorMessage={errors.name?.message}
@@ -79,7 +85,12 @@ export const ChangeNicknamePage: FC = () => {
         </form>
       </div>
 
-      <Button type='submit' colorVariant="yellow" text="Підтвердити" marginBottom="8px" />
+      <Button
+        type="submit"
+        colorVariant="yellow"
+        text="Підтвердити"
+        marginBottom="8px"
+      />
       <Button onClick={handleEditClick} text="Скасувати" />
     </div>
   )

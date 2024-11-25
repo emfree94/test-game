@@ -29,8 +29,15 @@ export const App = () => {
       const initData = tg.initData
       setRawInitData(initData)
 
-      postTelegramData(initData).unwrap()
-      dispatch(userData(data.data))
+      postTelegramData(initData)
+        .unwrap()
+        .then((response) => {
+          console.log('Response from API:', response)
+          dispatch(userData(response.data))
+        })
+        .catch((error) => {
+          console.error('Error during POST request:', error)
+        })
     }
   }, [dispatch, postTelegramData])
 

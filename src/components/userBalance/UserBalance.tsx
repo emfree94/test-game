@@ -23,7 +23,7 @@ export const UserBalance: FC<UserBalanceProps> = ({
 
   return (
     <>
-      <div>Data - {JSON.stringify(data.data)}</div>
+      <div>Data - {JSON.stringify(data?.balance)}</div>
       <div className="user-balance">
         {/* <div>DATA - {JSON.stringify(data)}</div> */}
 

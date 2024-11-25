@@ -6,6 +6,7 @@ import { useDispatch } from 'react-redux'
 import { userData } from 'features/response/responseSlice'
 import { Navigation } from '@components/navigation/Navigation'
 import { useGetAccountBalanceQuery } from '@features/api/putSlice'
+import { setBalances } from '@features/response/balanceSlice'
 
 declare global {
   interface Window {
@@ -14,8 +15,8 @@ declare global {
 }
 
 export const App = () => {
-  const [postTelegramData, { isLoading, isError, data }] = usePostTelegramDataMutation()
-  const { data: balanceData, isLoading: isBalanceLoading, error: balanceError } = useGetAccountBalanceQuery({});
+  const [postTelegramData] = usePostTelegramDataMutation()
+  const { data: balanceData } = useGetAccountBalanceQuery({})
   const dispatch = useDispatch()
 
   useEffect(() => {
@@ -24,10 +25,20 @@ export const App = () => {
       const initData = tg.initData
       postTelegramData(initData)
         .unwrap()
-          dispatch(userData(data.data))
+        .then((response) => {
+          dispatch(userData(response.data))
+        })
+        .catch((error) => {
+          console.error('Error during POST request:', error)
+        })
     }
   }, [dispatch, postTelegramData])
 
+  useEffect(() => {
+    if (balanceData && balanceData.data?.balances) {
+      dispatch(setBalances(balanceData.data.balances))
+    }
+  }, [balanceData, dispatch])
 
   return (
     <div className="app-wrapper">

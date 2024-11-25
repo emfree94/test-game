@@ -31,14 +31,17 @@ export const UserBalance: FC<UserBalanceProps> = ({
   }, [data, dispatch]);
 
   const silverCoinBalance = data?.data?.balances?.['silver-coins']?.balance
+  const goldCoinBalance = data?.data?.balances?.['golden-coins']?.balance;
 
   return (
     <>
       <div className="user-balance">
+        <div>SILVER - {silverCoinBalance}</div>
+        <div>GOLD - {goldCoinBalance}</div>
         <div className="coins" onClick={() => navigate('/transfer-costs')}>
           <img src={goldenCoin} alt="golden-coin" />
           <p className="coin-balance text-semi-bold">
-            {formatAmount(silverCoinBalance)}
+            {formatAmount(silverBalance)}
           </p>
           <img className="add-coin" src={addCircleIcon} alt="golden-coin" />
         </div>

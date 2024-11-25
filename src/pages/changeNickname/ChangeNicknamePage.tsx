@@ -60,6 +60,7 @@ export const ChangeNicknamePage: FC = () => {
       // Call the mutation and unwrap the response
       const response = await updateAccountName(payload).unwrap()
       dispatch(userData(response.data)) // Dispatch userData with the response data
+      navigate('/') // Optionally navigate after success
     } catch (error: any) {
       console.error('Error during PUT request:', error)
       alert('An error occurred while updating the nickname.')

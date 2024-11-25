@@ -14,7 +14,6 @@ declare global {
 }
 
 export const App = () => {
-  const [rawInitData, setRawInitData] = useState<string | null>(null)
   const [postTelegramData, { isLoading, isError, data }] =
     usePostTelegramDataMutation()
   const [
@@ -28,8 +27,6 @@ export const App = () => {
     if (window.Telegram && window.Telegram.WebApp) {
       const tg = window.Telegram.WebApp
       const initData = tg.initData
-      setRawInitData(initData)
-
       postTelegramData(initData)
         .unwrap()
         .then((response) => {
@@ -50,7 +47,7 @@ export const App = () => {
     }
 
     try {
-      const data = await updateAccountName(payload).unwrap() 
+      const data = await updateAccountName(payload).unwrap()
 
       setResponse(data)
       console.log('Response from PUT request:', response)
@@ -59,9 +56,10 @@ export const App = () => {
       console.error('Error during PUT request:', error)
     }
   }
-  
+
   return (
-    <div className='app-wrapper'>
+    <div className="app-wrapper">
+      <div className="">{localStorage.getItem('token')}</div>
       <main>
         <Outlet />
       </main>

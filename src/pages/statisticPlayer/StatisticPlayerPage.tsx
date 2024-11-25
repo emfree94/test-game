@@ -57,7 +57,7 @@ export const StatisticPlayerPage = () => {
     <div className="statistic-player">
       <div className="statistic-player-head">
         <ProfileHeader />
-        <UserBalance silverBalance={220} goldBalance={20000} />
+        <UserBalance />
       </div>
 
       <div className="statistic-info">

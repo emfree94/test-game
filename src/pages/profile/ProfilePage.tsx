@@ -31,7 +31,7 @@ export const ProfilePage: FC = () => {
       <div className="profile-wrapper">
         <div className="user-data-wrapper">
           <ProfileHeader />
-          <UserBalance silverBalance={3000} goldBalance={20000} />
+          <UserBalance />
         </div>
         <div className="profile-menu">
           <ul className="menu-list">

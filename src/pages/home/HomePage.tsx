@@ -211,7 +211,7 @@ export const HomePage = () => {
       <ProfileHeader />
 
       <div className="home-page__balance_wrapper">
-        <UserBalance silverBalance={20000} goldBalance={220} />
+        <UserBalance />
 
         <div className="home-page__balance_wrapper--settings">
           <img

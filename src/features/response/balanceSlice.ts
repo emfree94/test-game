@@ -3,11 +3,11 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 interface Balances {
   'silver-coins': {
     name: string;
-    balance: string;
+    balance: string | number;
   };
   'golden-coins': {
     name: string;
-    balance: string;
+    balance: string| number;
   };
 }
 

@@ -5,7 +5,7 @@ import { usePostTelegramDataMutation } from 'features/api/apiSlice'
 import { useUpdateAccountNameMutation } from 'features/api/putSlice'
 import { useDispatch } from 'react-redux'
 import { userData } from 'features/response/responseSlice'
-import { Navigation } from '@components/navigation/Navigation'
+import { Navigations } from '@components/navigations/Navigations'
 
 declare global {
   interface Window {
@@ -65,7 +65,7 @@ export const App = () => {
       <main>
         <Outlet />
       </main>
-      <Navigation />
+      <Navigations />
     </div>
   )
 }

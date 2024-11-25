@@ -48,10 +48,9 @@ export const ChangeNicknamePage: FC = () => {
   const valueInput = watch('name')
   const inputLength = valueInput ? valueInput.length : 0
 
-
   const onSubmit = async (formData: FormData) => {
     const payload = {
-      name: formData.name, 
+      name: formData.name,
       email: 'ruslan_test_ruslan@rr.rr',
       phone: '+ (38) 067 123 4567',
     }
@@ -84,14 +83,15 @@ export const ChangeNicknamePage: FC = () => {
             inputLength={inputLength}
           />
         </form>
-      </div>
 
-      <Button
-        type="submit"
-        colorVariant="yellow"
-        text="Підтвердити"
-        marginBottom="8px"
-      />
+        <Button
+          type="submit"
+          colorVariant="yellow"
+          text="Підтвердити"
+          marginBottom="8px"
+        />
+      </div>
+      
       <Button onClick={handleEditClick} text="Скасувати" />
     </div>
   )

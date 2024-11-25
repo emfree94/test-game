@@ -4,10 +4,14 @@ import goldenCoinIcon from '@assets/icon/golden_coins2.svg'
 import errorIcon from '@assets/icon/error.svg'
 import successIcon from '@assets/icon/check_circle_success.svg'
 
-export const formatAmount = (amount: string | number) => {
-  const amountStr = typeof amount === 'number' ? amount.toString() : amount
-  return amountStr.replace(/\B(?=(\d{3})+(?!\d))/g, ' ')
-}
+export const formatAmount = (amount: string | number | undefined) => {
+  if (amount === undefined || amount === null) {
+    return '0'; 
+  }
+  const amountStr = typeof amount === 'number' ? amount.toString() : amount;
+  return amountStr.replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
+};
+
 
 export const sortByDate = (data: any[]) => {
   return data.sort(

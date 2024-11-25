@@ -4,9 +4,12 @@ import { Title } from '@components/title/Title'
 import editIcon from '@assets/icon/edit.svg'
 import cameraIcon from '@assets/icon/photo_camera.svg'
 import './profileUser.scss'
+import { useSelector } from 'react-redux'
+import { RootState } from 'store/store'
 
 
 export const UserProfile: FC = () => {
+  const {  name } = useSelector((state: RootState) => state.userData.data) ?? {};
   const navigate = useNavigate()
 
   const handleEditClick = () => {
@@ -21,7 +24,7 @@ export const UserProfile: FC = () => {
           <p className="text-medium ">Нікнейм</p>
 
           <div className="user-data">
-            <p className="text-regular">Vladyslav Holdysh</p>
+            <p className="text-regular">{name}</p>
             <img
               onClick={handleEditClick}
               className="edit-nickname"

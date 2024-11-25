@@ -55,7 +55,6 @@ export const ChangeNicknamePage: FC = () => {
     }
 
     try {
-      // Call the mutation and unwrap the response
       const response = await updateAccountName(payload).unwrap()
       dispatch(userData(response.data))
       navigate(-1)

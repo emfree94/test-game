@@ -43,7 +43,7 @@ export const App = () => {
   return (
     <div className="app-wrapper">
       <div className="">{localStorage.getItem('token')}</div>
-      <div className="">{JSON.stringify(initData)}</div>
+      <div className="">{JSON.stringify(window.Telegram.WebApp.initData)}</div>
       <main>
         <Outlet />
       </main>

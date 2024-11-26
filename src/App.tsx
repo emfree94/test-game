@@ -15,7 +15,7 @@ declare global {
 }
 
 export const App = () => {
-  const [postTelegramData] = usePostTelegramDataMutation()
+  const [postTelegramData, {data}] = usePostTelegramDataMutation()
   const { data: balanceData } = useGetAccountBalanceQuery({})
   const dispatch = useDispatch()
 
@@ -43,6 +43,7 @@ export const App = () => {
   return (
     <div className="app-wrapper">
       <div className="">{localStorage.getItem('token')}</div>
+      <div className="">{JSON.stringify(data)}</div>
       <main>
         <Outlet />
       </main>

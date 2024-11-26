@@ -43,7 +43,7 @@ export const App = () => {
   return (
     <div className="app-wrapper">
       <div className="">{localStorage.getItem('token')}</div>
-      <div className="">{JSON.stringify(data)}</div>
+      <div className="">{JSON.stringify(initData)}</div>
       <main>
         <Outlet />
       </main>

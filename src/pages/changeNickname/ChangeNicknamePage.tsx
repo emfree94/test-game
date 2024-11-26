@@ -6,10 +6,10 @@ import { Title } from '@components/title/Title'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { FC } from 'react'
 import { useNavigate } from 'react-router-dom'
-import './changeNicknamePage.scss'
 import { useDispatch } from 'react-redux'
 import { userData } from 'features/response/responseSlice'
-import { useUpdateAccountNameMutation } from 'features/api/putSlice'
+import { useDynamicPutMutation } from 'features/api/putSlice'
+import './changeNicknamePage.scss'
 
 const schema = z.object({
   name: z
@@ -23,8 +23,7 @@ type FormData = z.infer<typeof schema>
 export const ChangeNicknamePage: FC = () => {
   const navigate = useNavigate()
   const methods = useForm()
-  const [updateAccountName, { isLoading, data, isError }] =
-    useUpdateAccountNameMutation()
+  const [dynamicPut, { isLoading, data, isError }] = useDynamicPutMutation()
   const dispatch = useDispatch()
 
   const handleEditClick = () => {
@@ -55,7 +54,11 @@ export const ChangeNicknamePage: FC = () => {
     }
 
     try {
-      const response = await updateAccountName(payload).unwrap()
+      const response = await dynamicPut({
+        url: '/account',
+        body: payload,
+      }).unwrap()
+
       dispatch(userData(response.data))
       navigate(-1)
     } catch (error: any) {
@@ -88,10 +91,9 @@ export const ChangeNicknamePage: FC = () => {
             text="Підтвердити"
             marginBottom="8px"
           />
+          <Button onClick={handleEditClick} text="Скасувати" />
         </form>
       </div>
-
-      <Button onClick={handleEditClick} text="Скасувати" />
     </div>
   )
 }

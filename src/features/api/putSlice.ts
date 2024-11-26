@@ -14,21 +14,17 @@ export const putSlice = createApi({
     },
   }),
   endpoints: (builder) => ({
-    updateAccountName: builder.mutation({
-      query: ({ name, email, phone }) => ({
-        url: '/account',
+    dynamicPut: builder.mutation({
+      query: ({ url, body }) => ({
+        url, 
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: {
-          name,
-          email,
-          phone,
-        },
+        body, 
       }),
     }),
-    
+
     getAccountBalance: builder.query({
       query: () => '/account/balance',
     }),
@@ -36,6 +32,6 @@ export const putSlice = createApi({
 });
 
 export const { 
-  useUpdateAccountNameMutation, 
+  useDynamicPutMutation, 
   useGetAccountBalanceQuery 
 } = putSlice;

@@ -38,23 +38,6 @@ export const ChangePasswordPage: FC = () => {
     navigate('/profile')
   }
 
-  // const onSubmit = async (formData: FormData) => {
-  //   const payload = {
-  //     name: formData.name,
-  //     email: 'ruslan_test_ruslan@rr.rr',
-  //     phone: '+ (38) 067 123 4567',
-  //   }
-
-  //   try {
-  //     const response = await updateAccountName(payload).unwrap()
-  //     dispatch(userData(response.data))
-  //     navigate(-1)
-  //   } catch (error: any) {
-  //     console.error('Error during PUT request:', error)
-  //     alert('An error occurred while updating the nickname.')
-  //   }
-  // }
-
   const {
     register,
     handleSubmit,

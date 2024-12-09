@@ -7,8 +7,8 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import { FC } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
-import { userData } from 'features/response/responseSlice'
-import { useDynamicPutMutation } from 'features/api/putSlice'
+import { useDynamicPutMutation } from '@features/api/accountApiSlice'
+import { userData } from '@features/user/userSlice'
 import './changeNicknamePage.scss'
 
 const schema = z.object({

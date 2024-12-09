@@ -1,7 +1,7 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 
-export const apiSlice = createApi({
-  reducerPath: 'api',
+export const telegramApiSlice = createApi({
+  reducerPath: 'telegramApi',
   baseQuery: fetchBaseQuery({
     baseUrl: 'https://api.chuvachi.online/api',
   }),
@@ -19,4 +19,4 @@ export const apiSlice = createApi({
   }),
 });
 
-export const { usePostTelegramDataMutation } = apiSlice;
+export const { usePostTelegramDataMutation } = telegramApiSlice;

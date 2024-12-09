@@ -1,20 +1,21 @@
+// src/store/store.ts
+import { accountApiSlice } from '@features/api/accountApiSlice'
+import { telegramApiSlice } from '@features/api/telegramApiSlice'
 import { configureStore } from '@reduxjs/toolkit'
-import { apiSlice } from 'features/api/apiSlice'
-import { putSlice } from 'features/api/putSlice'
-import responseReducer from 'features/response/responseSlice'
-import balanceReducer from 'features/response/balanceSlice'
+import balanceReducer from '@features/balance/balanceSlice';
+import userReducer from '@features/user/userSlice';
 
 export const store = configureStore({
   reducer: {
-    [apiSlice.reducerPath]: apiSlice.reducer,
-    [putSlice.reducerPath]: putSlice.reducer,
-    userData: responseReducer,
+    [telegramApiSlice.reducerPath]: telegramApiSlice.reducer,
+    [accountApiSlice.reducerPath]: accountApiSlice.reducer,
+    userData: userReducer,
     balances: balanceReducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware()
-      .concat(apiSlice.middleware)
-      .concat(putSlice.middleware),
+      .concat(telegramApiSlice.middleware)
+      .concat(accountApiSlice.middleware),
 })
 
 export type RootState = ReturnType<typeof store.getState>

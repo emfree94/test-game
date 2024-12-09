@@ -1,12 +1,12 @@
 import React from 'react'
 import { Outlet } from 'react-router-dom'
 import { useEffect } from 'react'
-import { usePostTelegramDataMutation } from 'features/api/apiSlice'
 import { useDispatch } from 'react-redux'
-import { userData } from 'features/response/responseSlice'
 import { Navigation } from '@components/navigation/Navigation'
-import { useGetAccountBalanceQuery } from '@features/api/putSlice'
-import { setBalances } from '@features/response/balanceSlice'
+import { setBalances } from '@features/balance/balanceSlice'
+import { userData } from '@features/user/userSlice'
+import { useGetAccountBalanceQuery } from '@features/api/accountApiSlice'
+import { usePostTelegramDataMutation } from '@features/api/telegramApiSlice'
 
 declare global {
   interface Window {
@@ -15,7 +15,7 @@ declare global {
 }
 
 export const App = () => {
-  const [postTelegramData, {data}] = usePostTelegramDataMutation()
+  const [postTelegramData, { data }] = usePostTelegramDataMutation()
   const { data: balanceData } = useGetAccountBalanceQuery({})
   const dispatch = useDispatch()
 
